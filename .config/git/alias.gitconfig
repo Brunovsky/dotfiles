@@ -1,0 +1,77 @@
+# alias.gitconfig
+
+[alias]
+	# ===== ===== ===== ===== ===== =====
+	a   = add
+	ai  = add -i
+	au  = add -u
+	b   = branch
+	br  = branch
+	c   = commit
+	co  = commit
+	cl  = clone --recursive
+	d   = diff
+	dc  = diff --cached
+	dt  = difftool
+	dct = difftool --cached
+	f   = fetch
+	fa  = fetch --all
+	fp  = format-patch
+	g   = grep -p
+	l   = log --oneline
+	lg  = log --oneline --graph --decorate
+	ls  = ls-files
+	m   = merge
+	ma  = merge --abort
+	mc  = merge --continue
+	ms  = merge --skip
+	o   = checkout
+	ob  = checkout -b
+	ps  = push
+	pl  = pull --recurse-submodules
+	pla = pull --recurse-submodules --all
+	rb  = rebase
+	rbi = rebase --interactive
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbs = rebase --skip
+	re  = reset
+	reh = reset --hard
+	rem = reset --mixed
+	res = reset --soft
+	rmt = remote
+	s   = status
+	st  = status
+	sm  = submodule
+	sub = submodule
+	# ===== ===== ===== ===== ===== =====
+
+	# view info, verbose version
+	tags = tag -l
+	branches = branch -avv
+	remotes = remote -v
+
+	# view other info
+	aliases = config --get-regexp alias
+	contributors = shortlog --summary --numbered
+	whoami = config user.email
+
+	# view last commit
+	last = log -1 HEAD
+
+	# remove from staging area, i.e. unstage something
+	unstage = reset HEAD --
+	unadd = unstage
+
+	# amend the HEAD commit
+	amend = commit --amend
+	ammend = amend
+	overwrite = amend --reuse-message=HEAD
+	ovw = overwrite
+
+	# remove the old tag with this name and tag the latest commit with it
+	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+
+	# diff check changes
+	check = diff --check --cached
+	changes = diff --cached

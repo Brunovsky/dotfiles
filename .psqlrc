@@ -1,0 +1,49 @@
+-- man 1 psql /Meta-Commands /Variables /Prompting
+
+-- for learning purposes
+\set ECHO_HIDDEN 1
+
+-- prompt
+-- ======
+
+-- %M  full hostname
+-- %n  session username
+-- %/  current database
+-- %R  state of shell
+-- %#  super user
+-- %[%033[...%] ascii color
+\set PROMPT1 		  '%[%033[34m%]%M%[%033[0m%] '
+\set PROMPT1 :PROMPT1 '%[%033[31m%]%n%[%033[0m%]'
+\set PROMPT1 :PROMPT1 '%[%033[35m%]@%[%033[%0m%]'
+\set PROMPT1 :PROMPT1 '%[%033[32m%]%/%[%033[0m%]'
+\set PROMPT1 :PROMPT1 '%[%033[36m%]%R%[%033[0m%] '
+\set PROMPT1 :PROMPT1 '%[%033[35m%]%#%[%033[0m%] '
+-- when more input is expected, %R=what-input-is-expected
+\set PROMPT2 		  '%[%033[35m%][more]%[%033[0m%] '
+\set PROMPT2 :PROMPT2 '%[%033[36m%]%R%[%033[0m%] '
+\set PROMPT2 :PROMPT2 '%[%033[35m%]%#%[%033[0m%] '
+
+-- history
+-- =======
+
+\set HISTCONTROL ignoreboth
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTSIZE 16000
+\set IGNOREOF 1
+
+-- formatting and output
+-- =====================
+
+-- what to print instead of a null value, default is an empty string
+\pset null '[null]'
+\pset footer on
+\pset linestyle unicode
+\x auto
+\set COMP_KEYWORD_CASE upper
+\set VERBOSITY default
+
+-- more
+-- ====
+
+-- show query timing
+\timing on

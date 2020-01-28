@@ -1,0 +1,24 @@
+# dependencies
+# ============
+
+--- oh-my-zsh
+https://github.com/ohmyzsh/ohmyzsh
+install to ~/.oh-my-zsh as documented. do not touch .zshrc
+ZSH_CUSTOM is set to ~/.config/zsh/custom
+
+--- powerlevel10k (omz theme)
+https://github.com/romkatv/powerlevel10k
+already installed through .gitmodules
+
+--- oh-my-fish
+https://github.com/oh-my-fish/oh-my-fish
+install to ~/.oh-my-fish as documented. do not touch config.fish
+
+--- pure (omf theme)
+fish$ omf install pure && omf theme pure
+
+# DE dependent configs
+# ====================
+
+.profile
+.xprofile

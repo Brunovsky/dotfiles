@@ -1,0 +1,52 @@
+// Place your key bindings in this file to override the defaults
+[
+	// from extension Settings Cycle, toggle line numbers
+	{
+		"key": "ctrl+shift+l",
+		"command": "settings.cycle.lineNumbers"
+	},
+
+	// Focus another group with Ctrl+Alt
+	{
+		"key": "ctrl+alt+left",
+		"command": "workbench.action.focusLeftGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+alt+right",
+		"command": "workbench.action.focusRightGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+alt+up",
+		"command": "workbench.action.focusAboveGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+alt+down",
+		"command": "workbench.action.focusBelowGroup",
+		"when": "editorTextFocus"
+	},
+
+	// Move editor to another group with Ctrl+Shift+Alt
+	{
+		"key": "ctrl+shift+alt+left",
+		"command": "workbench.action.moveEditorToLeftGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+alt+right",
+		"command": "workbench.action.moveEditorToRightGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+alt+up",
+		"command": "workbench.action.moveEditorToAboveGroup",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+alt+down",
+		"command": "workbench.action.moveEditorToBelowGroup",
+		"when": "editorTextFocus"
+	}
+]

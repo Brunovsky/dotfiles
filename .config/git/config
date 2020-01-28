@@ -1,0 +1,73 @@
+# man git-config
+
+# --- ideas
+# https://gist.github.com/pksunkara/988716
+# https://github.com/mathiasbynens/dotfiles
+# https://github.com/paulirish/dotfiles
+# https://github.com/jessfraz/dotfiles
+# https://github.com/GitAlias/gitalias
+
+[apply]
+    whitespace = fix
+
+[core]
+    autocrlf = input
+    whitespace = trailing-space,space-before-tab,-indent-with-non-tab
+
+[column]
+    # show output of commands in aligned columns: column,nodense
+    ui = auto,column,nodense
+    branch = auto,column,nodense
+    clean = auto,column,nodense
+    status = auto,column,nodense
+    tag = auto,column,nodense
+
+[commit]
+    # remove whitespace and comments from commit messages
+    cleanup = strip
+    verbose = 1
+
+[diff]
+    # treat copies as renames too
+    renames = copies
+    submodule = short
+    # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
+    algorithm = patience
+
+[help]
+    # dont autocorrect mistyped commands, print them instead
+    autocorrect = 0
+
+[log]
+    # abbreviate commit SHA hashes (for small consoles)
+    abbrevCommit = true
+    # colors to use for git lg
+    graphColors = red,blue,yellow,green,magenta,cyan,white
+
+[merge]
+    # add commit messages to the default merge commit message
+    log = true
+
+[push]
+    default = simple
+    followTags = true
+    recurseSubmodules = check
+
+[status]
+    relativePaths = false
+    short = true
+    branch = true
+    showStash = true
+
+[submodule]
+    # include --recurse-submodules in commands that support it
+    recurse = true
+
+[include]
+    path = alias.gitconfig
+    path = url.gitconfig
+    path = color.gitconfig
+    # private
+    path = user.gitconfig
+    path = override.gitconfig
+	path = de.gitconfig

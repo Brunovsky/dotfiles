@@ -1,0 +1,5 @@
+# user.gitconfig
+
+[user]
+    name = @name@
+    email = @email@

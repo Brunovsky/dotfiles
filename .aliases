@@ -1,0 +1,86 @@
+# --- ideas
+# https://github.com/LukeSmithxyz/voidrice/blob/master/.config/aliasrc
+# https://github.com/mathiasbynens/dotfiles/blob/master/.aliases
+# https://github.com/miguelpduarte/dotfiles
+
+# general ls aliases
+# ==================
+# ls=short, ll=long
+# v=not dotfiles, .=dotfiles | f=files, d=dirs, l=link, s=socket
+
+alias ll="\ls  --si --color=auto -bF --group-directories-first -lvA"
+alias ls="\ls  --si --color=auto -bF --group-directories-first -CvA"
+alias llv="\ls --si --color=auto -bF --group-directories-first -lv"
+alias lsv="\ls --si --color=auto -bF --group-directories-first -Cv"
+alias ll.="\ls --si --color=auto -bF --group-directories-first -lvA --ignore='[!.]*'"
+alias ls.="\ls --si --color=auto -bF --group-directories-first -CvA --ignore='[!.]*'"
+
+# keep the ';' or bash will choke
+llf()  { ll  --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
+llfv() { llv --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
+llf.() { ll. --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
+lld()  { ll  --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
+lldv() { llv --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
+lld.() { ll. --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
+lll()  { ll  --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
+lllv() { llv --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
+lll.() { ll. --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
+lls()  { ll  --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
+llsv() { llv --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
+lls.() { ll. --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
+
+# carefully copy, move, rename, remove and link files
+# ===================================================
+
+alias carecp='cp --interactive --verbose --preserve=links --no-dereference'
+alias caremv='mv --interactive --verbose'
+alias carerename='rename --no-overwrite --verbose'
+alias carerm='rm --interactive --dir --verbose'
+alias careln='ln --interactive --verbose'
+
+alias mkdir='mkdir --parents --verbose'
+alias rmdir='rmdir --verbose'
+
+# move around
+# ===========
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .1='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# utility options
+# ===============
+
+alias path='echo $PATH | tr -s ":" "\n"'
+alias df='df --si'
+alias du='du --si -cs'
+alias tree='tree --si -F --dirsfirst -vas -L 3 --filelimit 1000'
+alias bc='bc --interactive --mathlib'
+alias ffmpeg='ffmpeg -hide_banner'
+
+# simple functions
+# ================
+
+# invoke valgrind to debug memory leaks
+alias memcheck='valgrind --leak-check=full --show-leak-kinds=all'
+
+# source code grep
+alias sgrep='grep -HnE'
+alias sigrep='grep -HniE'
+
+# dotfiles
+alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# I can't seem to remember this
+alias lnorder='echo "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)
+    -s for symbolic, -T to treat SINK as a normal file"'
+
+# xorg device drivers
+alias xorgdrivers='grep -e "Using input driver" $XDG_DATA_HOME/xorg/Xorg*log'

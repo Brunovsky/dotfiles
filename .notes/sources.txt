@@ -1,0 +1,62 @@
+# sources
+# =======
+
+# aliases, prompt
+https://github.com/miguelpduarte/dotfiles
+
+# aliases, editorconfig, git
+https://github.com/mathiasbynens/dotfiles
+
+# git, inputrc
+https://github.com/paulirish/dotfiles
+
+# psql
+https://github.com/thoughtbot/dotfiles
+
+# git
+https://github.com/jessfraz/dotfiles
+
+# Xresources, zsh
+https://gitlab.com/dwt1/dotfiles
+
+# Xresources, aliases, env, zsh
+https://github.com/LukeSmithxyz/voidrice
+
+# nord colors schemes
+https://github.com/arcticicestudio/nord
+
+# git
+https://github.com/GitAlias/gitalias
+
+# bash
+https://github.com/awesome-lists/awesome-bash
+
+# bash
+https://github.com/mrzool/bash-sensible
+
+# zsh
+https://github.com/unixorn/awesome-zsh-plugins
+
+# zsh
+https://github.com/ohmyzsh/ohmyzsh
+
+# zsh
+https://github.com/romkatv/powerlevel10k
+
+# git
+https://gist.github.com/pksunkara/988716
+
+# most
+https://github.com/FauxFaux/most-pager
+
+# gdbinit
+https://github.com/RAttab/dotfiles
+
+# gdbinit
+https://git.connectical.com/aperez/dotfiles
+
+# gdbinit
+https://github.com/s3rvac/dotfiles
+
+# Xresources
+https://gist.github.com/AnthonyDiGirolamo/d2124446c8656eb578a64c9e9dd4cae0
