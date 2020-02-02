@@ -156,6 +156,9 @@
 	// ========
 	"prettier.trailingComma": "none",
 	"prettier.htmlWhitespaceSensitivity": "ignore",
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
