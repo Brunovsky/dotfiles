@@ -41,6 +41,9 @@ alias careln='ln --interactive --verbose'
 alias mkdir='mkdir --parents --verbose'
 alias rmdir='rmdir --verbose'
 
+alias rsynccp='rsync -ae ssh -vh --progress'
+alias rsynctransfer='rsync -ae ssh -vh --info=progress2 --no-inc-recursive'
+
 # move around
 # ===========
 
@@ -82,5 +85,9 @@ alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias lnorder='echo "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)
     -s for symbolic, -T to treat SINK as a normal file"'
 
-# xorg device drivers
+# print xorg drivers
 alias xorgdrivers='grep -e "Using input driver" $XDG_DATA_HOME/xorg/Xorg*log'
+
+# pretty print json
+alias prettyjson='python -m json.tool'
+

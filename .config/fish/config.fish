@@ -13,12 +13,12 @@ ulimit -c 2097152
 # ls=short, ll=long
 # v=not dotfiles, .=dotfiles | f=files, d=dirs, l=link, s=socket
 
-alias ll  "ls --si --color=auto -bF --group-directories-first -lvA"
-alias ls  "ls --si --color=auto -bF --group-directories-first -CvA"
-alias llv "ls --si --color=auto -bF --group-directories-first -lv"
-alias lsv "ls --si --color=auto -bF --group-directories-first -Cv"
-alias ll. "ls --si --color=auto -bF --group-directories-first -lvA --ignore '[!.]*'"
-alias ls. "ls --si --color=auto -bF --group-directories-first -CvA --ignore '[!.]*'"
+alias ll  "command ls --si --color=auto -bF --group-directories-first -lvA"
+alias ls  "command ls --si --color=auto -bF --group-directories-first -CvA"
+alias llv "command ls --si --color=auto -bF --group-directories-first -lv"
+alias lsv "command ls --si --color=auto -bF --group-directories-first -Cv"
+alias ll. "command ls --si --color=auto -bF --group-directories-first -lvA --ignore '[!.]*'"
+alias ls. "command ls --si --color=auto -bF --group-directories-first -CvA --ignore '[!.]*'"
 
 function llf  --description 'list files'
     ll  --color=always $argv | grep -Eve '^d([r-][w-][xst-])+ '
@@ -69,6 +69,9 @@ alias careln 'ln --interactive --verbose'
 alias mkdir 'mkdir --parents --verbose'
 alias rmdir 'rmdir --verbose'
 
+alias rsynccp 'rsync -ae ssh -vh --progress'
+alias rsynctransfer 'rsync -ae ssh -vh --info=progress2 --no-inc-recursive'
+
 # move around
 # ===========
 
@@ -107,4 +110,8 @@ alias dotf 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias lnorder 'echo "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)
     -s for symbolic, -T to treat SINK as a normal file"'
 
+# print xorg drivers
 alias xorgdrivers='grep -e "Using input driver" $XDG_DATA_HOME/xorg/Xorg*log'
+
+# pretty print json
+alias prettyjson='python -m json.tool'

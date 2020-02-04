@@ -33,3 +33,15 @@ Icon?
 Thumbs.db
 *.lock
 *.lck
+
+# Let's not do something stupid https://xkcd.com/530/
+id_rsa*
+id_dsa*
+id_ed25519*
+id_ecdsa*
+pubring.*
+secring.*
+trustdb.gpg
+
+.env.prod*
+.prod*.env

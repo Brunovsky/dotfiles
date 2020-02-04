@@ -1,4 +1,4 @@
-# man 3 readline /Variables
+# man 3 readline /Variables /'EDITING COMMANDS'
 
 # --- source
 # https://github.com/mathiasbynens/dotfiles
@@ -8,7 +8,7 @@ set colored-completion-prefix   off
 set colored-stats               off
 set completion-ignore-case      on
 set completion-map-case         on
-set completion-query-items      on
+set completion-query-items      200
 set show-all-if-ambiguous       on
 set mark-symlinked-directories  on
 set match-hidden-files          off
@@ -18,7 +18,9 @@ set input-meta   on
 set output-meta  on
 set convert-meta off
 
-"\e[A": history-search-backward
-"\e[B": history-search-forward
+# the manual explains the difference between
+# history-search-* and history-substring-search-*
+"\e[A": history-substring-search-backward
+"\e[B": history-substring-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
