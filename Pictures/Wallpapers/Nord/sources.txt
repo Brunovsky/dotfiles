@@ -1,0 +1,38 @@
+arctic-landscape.png
+2020-02-01: https://github.com/lokesh-krishna/dotfiles
+
+blue-white-yinyang.png
+2020-02-03: generated with magick
+
+coffee-cat.png
+2020-02-01: https://www.reddit.com/r/unixporn/comments/bnopcv/gnome_nord
+
+dark-yinyang.png
+2020-02-03: generated with magick
+
+forest.png
+2020-02-01: https://github.com/enindu/dotfiles
+
+frost-yinyang.png
+2020-02-03: generated with magick
+
+grey-yinyang.png
+2020-02-03: generated with magick
+
+hex-sunset.png
+2020-02-01: https://i.redd.it/59bsn5hgnojy.jpg
+
+nord-papers.png
+2020-02-01: https://github.com/Nitrux/luv-icon-theme
+
+plain-arch.png
+2020-01-30: https://www.reddit.com/r/archlinux/comments/bbivwl/nord_theme_1080p_wallpaper
+
+reindeer.png
+2020-02-01: https://imgur.com/gallery/b5OtWun
+
+sky-rocket.png
+2020-02-01: https://i.imgur.com/DKHLXmG.png
+
+while-doubt.png
+2020-02-01: https://imgur.com/7OgOglX

@@ -30,7 +30,7 @@ export TERMINAL=konsole
 
 export DE=kde
 export GTK_USE_PORTAL=1
-export MOZ_USE_XINPUT2=1
+export MOZ_USE_XINPUT2=0
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 export GIT_ASKPASS=/usr/bin/ksshaskpass
