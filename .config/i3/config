@@ -1,0 +1,325 @@
+# i3 config
+# =========
+
+# https://i3wm.org/docs/userguide.html
+# -- reference, syntax
+
+# i3 config file (v4)
+
+set $mod    Mod4
+set $alt    Mod1
+set $super  Mod4
+
+# font for window titles and default font for i3bar.
+font pango:Hack Nerd Font, Fira Code, monospace 8
+
+# programs
+set $terminal       --no-startup-id $TERMINAL
+set $launcher       --no-startup-id dmenu_run -i -nb '#292d3e' -nf '#bbc5ff'
+set $browser        $BROWSER
+
+# audio commands
+set $audio_raise    --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   +5%
+set $audio_lower    --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   -5%
+set $audio_mute     --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@   toggle
+set $audio_micmute  --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# media commands
+set $media_play     --no-startup-id playerctl play
+set $media_pause    --no-startup-id playerctl pause
+set $media_next     --no-startup-id playerctl next
+set $media_prev     --no-startup-id playerctl previous
+
+# screen brightness commands
+set $bright_raise   --no-startup-id xbacklight +5%
+set $bright_lower   --no-startup-id xbacklight -5%
+
+# keybindings
+# ===========
+
+# audio
+bindsym XF86AudioRaiseVolume    exec $audio_raise
+bindsym XF86AudioLowerVolume    exec $audio_lower
+bindsym XF86AudioMute           exec $audio_mute
+bindsym XF86AudioMicMute        exec $audio_micmute
+
+# media
+bindsym XF86AudioPlay           exec $media_play
+bindsym XF86AudioPause          exec $media_pause
+bindsym XF86AudioNext           exec $media_next
+bindsym XF86AudioPrev           exec $media_prev
+
+# screen brightness
+bindsym XF86MonBrightnessUp     exec $bright_raise
+bindsym XF86MonBrightnessDown   exec $bright_lower
+
+bindsym $mod+Return             exec $terminal
+bindsym $mod+Shift+Return       exec $launcher
+
+# qwerty 1st row
+
+bindsym $mod+q                  nop
+bindsym $mod+Shift+q            kill
+
+bindsym $mod+w                  focus mode_toggle
+bindsym $mod+Shift+w            nop
+
+bindsym $mod+e                  layout toggle split
+bindsym $mod+Shift+e            exit
+
+bindsym $mod+r                  nop
+bindsym $mod+Shift+r            restart
+
+bindsym $mod+t                  layout tabbed
+bindsym $mod+Shift+t            nop
+
+bindsym $mod+y                  nop
+bindsym $mod+Shift+y            nop
+
+bindsym $mod+u                  nop
+bindsym $mod+Shift+u            nop
+
+bindsym $mod+i                  nop
+bindsym $mod+Shift+i            nop
+
+bindsym $mod+o                  nop
+bindsym $mod+Shift+o            nop
+
+bindsym $mod+p                  nop
+bindsym $mod+Shift+p            nop
+
+# qwerty 2nd row
+
+bindsym $mod+a                  focus parent
+bindsym $mod+Shift+a            nop
+
+bindsym $mod+s                  layout stacking
+bindsym $mod+Shift+s            nop
+
+bindsym $mod+d                  scratchpad show
+bindsym $mod+Shift+d            move scratchpad
+
+bindsym $mod+f                  fullscreen toggle
+bindsym $mod+Shift+f            nop
+
+bindsym $mod+g                  nop
+bindsym $mod+Shift+g            nop
+
+bindsym $mod+h                  focus left
+bindsym $mod+Shift+h            move  left
+
+bindsym $mod+j                  focus down
+bindsym $mod+Shift+j            move  down
+
+bindsym $mod+k                  focus up
+bindsym $mod+Shift+k            move  up
+
+bindsym $mod+l                  focus right
+bindsym $mod+Shift+l            move  right
+
+# qwerty 3rd row
+
+bindsym $mod+z                  nop
+bindsym $mod+Shift+z            nop
+
+bindsym $mod+x                  nop
+bindsym $mod+Shift+x            nop
+
+bindsym $mod+c                  nop
+bindsym $mod+Shift+c            reload
+
+bindsym $mod+v                  split v
+bindsym $mod+Shift+v            nop
+
+bindsym $mod+b                  split h
+bindsym $mod+Shift+b            nop
+
+bindsym $mod+n                  nop
+bindsym $mod+Shift+n            nop
+
+bindsym $mod+m                  nop
+bindsym $mod+Shift+m            nop
+
+# arrow keys
+
+bindsym $mod+Left               focus left
+bindsym $mod+Down               focus down
+bindsym $mod+Up                 focus up
+bindsym $mod+Right              focus right
+
+bindsym $mod+Shift+Left         move left
+bindsym $mod+Shift+Down         move down
+bindsym $mod+Shift+Up           move up
+bindsym $mod+Shift+Right        move right
+
+# extra
+
+bindsym $mod+space              nop
+bindsym $mod+Shift+space        floating toggle
+
+bindsym $mod+Tab                workspace back_and_forth
+bindsym $mod+Shift+Tab          move container to workspace back_and_forth
+
+# workspaces
+# ==========
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1    "1:fox"
+set $ws2    "2:code"
+set $ws3    "3:ws"
+set $ws4    "4:ctl"
+set $ws5    "5"
+set $ws6    "6"
+set $ws7    "7"
+set $ws8    "8"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+
+# applications
+# ============
+
+# xss-lock
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# let i3 execute any command when it encounters a specific window.
+#> for_window <criteria> <command>
+
+# let i3 assign any new window to a specific workspace.
+#> assign <criteria> [workspace] [number] <workspace>
+#> assign <criteria> output left|right|up|down|primary|<output>
+assign [class="firefox"] $ws1
+assign [class="Code"]    $ws2
+assign [class="Spotify"] $ws4
+
+# let i3 automatically start applications on startup.
+#> exec [--no-startup-id] <command>
+#> exec_always [--no-start-up] <command>
+# the always version runs even on i3 restarts
+# use --no-startup-id to prevent startup notifs.
+exec $BROWSER
+exec spotify
+
+# let i3 automatically put workspaces on specific screens
+# workspace <workspace> output <output|monitor>
+
+# windows
+# =======
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# constrain floating window size
+floating_minimum_size 75 x 50
+floating_maximum_size  0 x  0
+
+# default orientation for new workspaces
+default_orientation auto
+
+# default workspace root layout
+workspace_layout default
+
+# focus follows mouse as it moves accross window borders
+focus_follows_mouse no
+
+# warp mouse to center of window on a different screen
+mouse_warping none
+
+# display popups in fullscreen mode (smart|ignore|leave_fullscreen)
+popup_during_fullscreen smart
+
+# automatically switch to previous workspace when switching to current workspace
+workspace_auto_back_and_forth yes
+
+# force display of urgency hint on workspace change for <ms> longer
+force_display_urgency_hint 500 ms
+
+# focus on window spawn
+#focus_on_window_activation smart
+
+# styling
+# =======
+
+# gaps between windows
+gaps inner 10
+gaps outer 0
+
+# window title alignment
+title_align             center
+
+# default border for new windows
+# settings border style to pixel eliminates title bars
+default_border          pixel 1
+default_floating_border normal
+
+# hide borders adjacent to screen edges
+hide_edge_borders       vertical
+
+# colors -- TODO: use Xresources
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+# i3 bar
+# ======
+
+bar {
+    status_command i3blocks
+
+    output primary
+    position top
+
+    mode dock
+    modifier None
+
+    font pang:Roboto, DejaVu Sans Mono, mono 10
+
+    tray_padding 0
+
+    strip_workspace_numbers yes
+
+    # scroll up (4) and down (5) to change audio volume
+    bindsym button4 exec $audio_raise
+    bindsym button5 exec $audio_lower
+
+    # colors
+    colors {
+        background #000000
+        statusline #ffffff
+        separator  #666666
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
+}
