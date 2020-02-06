@@ -90,10 +90,14 @@ zmodload zsh/complist
 
 # man zsh-lovers
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zshcomp
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh-cache
+
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
 
 compinit -d "$XDG_CACHE_HOME/zcompinit"
 

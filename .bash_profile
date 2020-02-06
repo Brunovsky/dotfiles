@@ -1,6 +1,7 @@
 # .bash_profile
 
 [[ -f ~/.profile ]] && . ~/.profile
+[[ -f ~/.bashrc  ]] && . ~/.bashrc
 
 # launch keychain
 shopt -s extglob

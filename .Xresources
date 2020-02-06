@@ -7,14 +7,19 @@
 ! xft - X FreeType
 ! ================
 
-! font sizes inconsistent across apps if 96dpi isnt forced
+! --- guidelines
+! https://wiki.archlinux.org/index.php/Font_configuration#Anti-aliasing
+
+! font sizes inconsistent across apps if 96dpi isnt forced.
 Xft.dpi: 96
 
-! type of subpixel antialiasing
 Xft.antialias: 1
 Xft.hinting: 1
-Xft.autohint: 1
-Xft.hintstyle: hintfull
+Xft.autohint: 0
+Xft.hintstyle: hintslight
+
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
 
 ! xterm terminal
 ! ==============
@@ -26,6 +31,9 @@ XTerm.termName: xterm-256color
 XTerm*locale: 1
 XTerm*metaSendsEscape: 1
 
+XTerm*backarrowKey: 0
+XTerm.ttyModes: erase ^?
+
 ! font
 XTerm*renderFont: 1
 XTerm*faceName: xft:Hack Nerd Font Mono:size=9
@@ -34,67 +42,13 @@ XTerm*utf8: 2
 
 ! buffer
 XTerm*buffered: 0
-!XTerm*bufferedFPS: 60
 
 ! scroll
 XTerm*saveLines: 16000
 XTerm*scrollBar: 0
 XTerm*scrollLines: 1
-XTerm*rightScrollBar: 1
-
-! urxvt terminal
-! ==============
-
-! --- guidelines
-! https://wiki.archlinux.org/index.php/Rxvt-unicode
-! man urxvt
-! urxvt --help
-
-URxvt.termName: rxvt-unicode-256color
-URxvt.borderLess: 1
-URxvt.internalBorder: 0
-URxvt.buffered: 0
-
-! url
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
-
-! copy and paste
-URxvt.perl-ext-common: default,clipboard
-URxvt.clipboard.autocopy: 1
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.C-c: perl:clipboard:copy
-URxvt.keysym.C-v: perl:clipboard:paste
-
-! cursor
-URxvt.cursorBlink: 0
-URxvt.cursorUnderline: 1
-URxvt.pointerBlank: 0
-
-! font
-URxvt.font: xft:Hack Nerd Font Mono:size=10, \
-            xft:DejaVuSansMono Nerd Font:size=10, \
-            xft:RobotoMono Nerd Font:size=10, \
-            xft:Inconsolata Nerd Font Mono:size=10, \
-            xft:DroidSansMono Nerd Font:size=10, \
-            xft:FuraMono Nerd Font:size=10, \
-            xft:Noto Sans Mono:size=10, \
-            xft:Monospace:style=Medium:size=10
-URxvt.letterSpace: -1
-URxvt.intensityStyles: 1
-URxvt.depth: 32
-
-! scroll
-URxvt.saveLines: 16000
-URxvt.scrollBar: 0
-URxvt.scrollBar_right: 1
-URxvt.scrollLines: 1
-URxvt.mouseWheelScrollPage: 0
-
-URxvt.scrollTtyOutput: 0
-URxvt.scrollWithBuffer: 0
-URxvt.scrollTtyKeypress: 1
+XTerm*rightScrollBar: 0
+Xterm*alternateScroll: 1
 
 ! terminal colors
 ! ===============
