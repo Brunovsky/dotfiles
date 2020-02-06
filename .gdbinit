@@ -1,5 +1,4 @@
-# .gdbinit
-# ========
+# man gdb gdbinit
 
 # --- examples
 # https://github.com/RAttab/dotfiles/blob/master/.gdbinit
@@ -11,7 +10,7 @@ set verbose off
 
 set history save on
 set history size 16000
-set history filename ~/.local/share/gdb_history
+set history filename ~/.gdb_history
 
 set print pretty on
 set print demangle on
