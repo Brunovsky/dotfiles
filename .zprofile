@@ -1,3 +1,1 @@
-# .zprofile
-
 [[ -f ~/.profile ]] && . ~/.profile

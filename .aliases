@@ -82,12 +82,8 @@ alias sigrep='grep -HniE'
 alias dotf='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # I can't seem to remember this
-alias lnorder='echo "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)
+alias lnorder='echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
     -s for symbolic, -T to treat SINK as a normal file"'
-
-# print xorg drivers
-alias xorgdrivers='grep -e "Using input driver" $XDG_DATA_HOME/xorg/Xorg*log'
 
 # pretty print json
 alias prettyjson='python -m json.tool'
-

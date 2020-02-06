@@ -1,6 +1,3 @@
-# dependencies
-# ============
-
 --- oh-my-zsh
 https://github.com/ohmyzsh/ohmyzsh
 install to ~/.oh-my-zsh as documented. do not touch .zshrc

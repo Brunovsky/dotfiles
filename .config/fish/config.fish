@@ -3,8 +3,6 @@
 # --- framework
 # https://github.com/oh-my-fish/oh-my-fish
 
-ulimit -c 2097152
-
 # general ls aliases
 # ==================
 # port of .aliases for the most part
@@ -20,40 +18,40 @@ alias lsv "command ls --si --color=auto -bF --group-directories-first -Cv"
 alias ll. "command ls --si --color=auto -bF --group-directories-first -lvA --ignore '[!.]*'"
 alias ls. "command ls --si --color=auto -bF --group-directories-first -CvA --ignore '[!.]*'"
 
-function llf  --description 'list files'
+function llf  --description 'list files' --wraps ls
     ll  --color=always $argv | grep -Eve '^d([r-][w-][xst-])+ '
 end
-function llfv --description 'list visible files'
+function llfv --description 'list visible files' --wraps ls
     llv --color=always $argv | grep -Eve '^d([r-][w-][xst-])+ '
 end
-function llf. --description 'list hidden files'
+function llf. --description 'list hidden files' --wraps ls
     ll. --color=always $argv | grep -Eve '^d([r-][w-][xst-])+ '
 end
-function lld  --description 'list folders'
+function lld  --description 'list folders' --wraps ls
     ll  --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+ '
 end
-function lldv --description 'list visible folders'
+function lldv --description 'list visible folders' --wraps ls
     llv --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+ '
 end
-function lld. --description 'list hidden folders'
+function lld. --description 'list hidden folders' --wraps ls
     ll. --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+ '
 end
-function lll  --description 'list symlinks'
+function lll  --description 'list symlinks' --wraps ls
     ll  --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+ '
 end
-function lllv --description 'list visible symlinks'
+function lllv --description 'list visible symlinks' --wraps ls
     llv --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+ '
 end
-function lll. --description 'list hidden symlinks'
+function lll. --description 'list hidden symlinks' --wraps ls
     ll. --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+ '
 end
-function lls  --description 'list sockets'
+function lls  --description 'list sockets' --wraps ls
     ll  --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+ '
 end
-function llsv --description 'list visible sockets'
+function llsv --description 'list visible sockets' --wraps ls
     llv --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+ '
 end
-function lls. --description 'list hidden sockets'
+function lls. --description 'list hidden sockets' --wraps ls
     ll. --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+ '
 end
 
@@ -107,11 +105,8 @@ alias sigrep 'grep -HniE'
 alias dotf 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # I can't seem to remember this
-alias lnorder 'echo "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)
+alias lnorder 'echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
     -s for symbolic, -T to treat SINK as a normal file"'
-
-# print xorg drivers
-alias xorgdrivers='grep -e "Using input driver" $XDG_DATA_HOME/xorg/Xorg*log'
 
 # pretty print json
 alias prettyjson='python -m json.tool'
