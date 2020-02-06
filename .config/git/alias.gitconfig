@@ -1,5 +1,3 @@
-# alias.gitconfig
-
 [alias]
 	# ===== ===== ===== ===== ===== =====
 	a   = add
@@ -75,3 +73,5 @@
 	# diff check changes
 	check = diff --check --cached
 	changes = diff --cached
+	checkpending = diff --check HEAD
+	pending = diff HEAD
