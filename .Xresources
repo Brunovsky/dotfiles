@@ -53,4 +53,4 @@ Xterm*alternateScroll: 1
 ! terminal colors
 ! ===============
 
-#include ".config/Xthemes/nord.Xresource"
+#include ".config/Xthemes/nord/Xresources"

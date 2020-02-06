@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# exports for the nord theme, use with e.g. imagemagick
+
 # polar night, shades of black
 export nord0='#2e3440'
 export nord1='#3b4252'

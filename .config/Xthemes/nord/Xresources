@@ -1,6 +1,3 @@
-! nord.Xresource
-! ==============
-
 ! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
 ! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
 
@@ -40,7 +37,7 @@
 *color5: nord15
 *color6: nord8
 *color7: nord5
-*color8: nord3
+*color8: nord4
 *color9: nord11
 *color10: nord14
 *color11: nord13
