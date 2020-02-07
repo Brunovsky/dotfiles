@@ -87,3 +87,6 @@ alias lnorder='echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
 
 # pretty print json
 alias prettyjson='python -m json.tool'
+
+# copy to clipboard
+alias clipclip='xclip -selection clipboard'
