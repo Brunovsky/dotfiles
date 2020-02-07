@@ -1,5 +1,7 @@
 [[ -z $TMPDIR ]] && export TMPDIR=/tmp
 
+export PATH=$HOME/.local/bin:$PATH
+
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -20,8 +22,8 @@ export VISUAL=nano
 export SUDO_EDITOR=nano
 export MOST_EDITOR=nano
 export PSQL_EDITOR=nano
-export GIT_EDITOR=nano
-export GIT_SEQUENCE_EDITOR=nano
+export GIT_EDITOR='code -w'
+export GIT_SEQUENCE_EDITOR='code -w'
 
 # dump all pagers here for future reference
 export PAGER=less
