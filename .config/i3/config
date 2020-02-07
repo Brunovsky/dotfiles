@@ -1,8 +1,5 @@
-# i3 config
-# =========
-
+# --- reference, syntax
 # https://i3wm.org/docs/userguide.html
-# -- reference, syntax
 
 # i3 config file (v4)
 
@@ -15,7 +12,7 @@ font pango:Hack Nerd Font, Fira Code, monospace 8
 
 # programs
 set $terminal       --no-startup-id $TERMINAL
-set $launcher       --no-startup-id dmenu_run -i -nb '#292d3e' -nf '#bbc5ff'
+set $launcher       --no-startup-id $LAUNCHER
 set $browser        $BROWSER
 
 # audio commands
@@ -165,10 +162,10 @@ bindsym $mod+Shift+Tab          move container to workspace back_and_forth
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1    "1:fox"
-set $ws2    "2:code"
-set $ws3    "3:ws"
-set $ws4    "4:ctl"
+set $ws1    "1"
+set $ws2    "2"
+set $ws3    "3"
+set $ws4    "4"
 set $ws5    "5"
 set $ws6    "6"
 set $ws7    "7"
@@ -212,9 +209,11 @@ exec --no-startup-id nm-applet
 # let i3 assign any new window to a specific workspace.
 #> assign <criteria> [workspace] [number] <workspace>
 #> assign <criteria> output left|right|up|down|primary|<output>
-assign [class="firefox"] $ws1
-assign [class="Code"]    $ws2
-assign [class="Spotify"] $ws4
+assign [class="firefox"]       $ws1
+assign [class="google-chrome"] $ws1
+assign [class="chromium"]      $ws1
+assign [class="Code"]          $ws2
+assign [class="Spotify"]       $ws4
 
 # let i3 automatically start applications on startup.
 #> exec [--no-startup-id] <command>
@@ -234,8 +233,8 @@ exec spotify
 floating_modifier $mod
 
 # constrain floating window size
-floating_minimum_size 75 x 50
-floating_maximum_size  0 x  0
+#floating_minimum_size 75 x 50
+#floating_maximum_size  0 x  0
 
 # default orientation for new workspaces
 default_orientation auto
@@ -265,8 +264,8 @@ force_display_urgency_hint 500 ms
 # =======
 
 # gaps between windows
-gaps inner 10
-gaps outer 0
+gaps inner  5
+gaps outer -5
 
 # window title alignment
 title_align             center
@@ -279,7 +278,7 @@ default_floating_border normal
 # hide borders adjacent to screen edges
 hide_edge_borders       vertical
 
-# colors -- TODO: use Xresources
+# colors -- TODO: use Xresources from nord
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a

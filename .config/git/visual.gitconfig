@@ -1,0 +1,120 @@
+[blame]
+    coloring = highlightRecent
+    date = human
+
+# show output of commands in aligned columns: column,nodense
+[column]
+    ui = auto column nodense
+    branch = auto column nodense
+    clean = auto column nodense
+    status = auto column nodense
+    tag = auto column nodense
+
+[diff]
+    dirstat = changes,cumulative,0
+    mnemonicPrefix = true
+    submodule = short
+    colorMoved = true
+    colorMovedWS = ignore-space-change
+
+[log]
+    abbrevCommit = true
+
+[status]
+    relativePaths = false
+    short = true
+    branch = true
+    aheadBehind = true
+    showStash = true
+    showUntrackedFiles = normal
+    submoduleSummary = true
+
+# color
+# =====
+
+[log]
+    graphColors = red,blue,yellow,green,magenta,cyan,white
+
+[color]
+    # use colors when outputting to the terminal
+    ui = auto
+    pager = true
+
+[color "advice"]
+    hint = green
+
+[color "blame"]
+    highlightRecent = magenta,12 month ago,blue,2 month ago,cyan,2 week ago,white,3 day ago,green,8 hour ago,green bold,1 hour ago
+    repeatedLines = blue dim
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+    upstream = magenta bold
+    plain = white bold
+
+[color "decorate"]
+    current = yellow bold
+    branch = green bold
+    remoteBranch = cyan bold
+    upstream = magenta bold
+    tag = white bold
+    stash = blue bold
+    HEAD = red bold
+
+# dense and frequent, don't overuse bold
+[color "diff"]
+    meta = magenta
+    frag = magenta italic dim
+    commit = blue
+    whitespace = yellow reverse
+    new = green
+    old = red
+    newDimmed = green italic
+    oldDimmed = red dim italic
+    newBold = green bold
+    oldBold = red bold
+    newMoved = cyan italic
+    oldMoved = blue dim
+    newMovedAlternative = cyan
+    oldMovedAlternative = blue dim italic
+    contextDimmed = white dim italic
+    contextBold = white bold
+
+# imitate default GREP_COLORS
+[color "grep"]
+    context = dim
+    function = blue dim
+    filename = magenta
+    lineNumber = green
+    column = green
+    match = red bold
+    separator = cyan
+
+[color "interactive"]
+    header = magenta bold
+    prompt = magenta
+    help = green
+    error = red bold
+
+[color "push"]
+    error = red bold
+
+[color "remote"]
+    hint = green
+    warning = yellow bold
+    success = green bold
+    error = red bold
+
+# dense and frequent, don't overuse bold
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = magenta
+    unmerged = red bold
+    localBranch = blue bold
+    remoteBranch = cyan bold
+
+[color "transport"]
+    rejected = red bold

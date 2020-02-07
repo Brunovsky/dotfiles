@@ -272,6 +272,8 @@ bind ^H chopwordleft main
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
 ## then uncomment these:
 bind ^Q exit all
+bind M-H help all
+bind M-H exit help
 bind ^H help all
 bind ^H exit help
 bind ^F whereis all

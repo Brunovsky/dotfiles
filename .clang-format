@@ -1,19 +1,16 @@
-# .clang-format
-# =============
-
+# --- reference
 # https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-# -- reference
 
 # dump configuration with 'clang-format --dump-config'
-# stash this file to get the default config with all options
+# stash this file before to get the default config with all options
 
-# no comments added below so you can just delete this header
-# and compare this file with the default settings, for example
+# compare this file with the default settings with
 # $ mv ~/.clang-format ~/.tmp.clang-format
 # $ sed -n '/^---$/,$p' ~/.tmp.clang-format > /tmp/1.clang-format
 # $ clang-format --dump-config > /tmp/2.clang-format
 # $ diff /tmp/1.clang-format /tmp/2.clang-format
-# there will be some whitespace noise though
+# $ mv ~/.tmp.clang-format ~/.clang-format
+# there may be some whitespace noise though
 
 ---
 Language:        Cpp

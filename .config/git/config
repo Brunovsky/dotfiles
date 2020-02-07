@@ -1,4 +1,7 @@
-# man git-config
+# man git-config gitcli
+#     git-diff git-log git-commit git-status git-fetch git-pull git-push
+#     git-grep git-merge git-notes git-help git-shortlog git-commit-tree
+#     gitcredentials git-range-diff git-apply
 
 # --- ideas
 # https://gist.github.com/pksunkara/988716
@@ -7,67 +10,63 @@
 # https://github.com/jessfraz/dotfiles
 # https://github.com/GitAlias/gitalias
 
-[apply]
-    whitespace = fix
+[advice]
+    pushUpdateRejected = false
+    statusHints = false
 
 [core]
     autocrlf = input
     whitespace = trailing-space,space-before-tab,-indent-with-non-tab
 
-[column]
-    # show output of commands in aligned columns: column,nodense
-    ui = auto,column,nodense
-    branch = auto,column,nodense
-    clean = auto,column,nodense
-    status = auto,column,nodense
-    tag = auto,column,nodense
+[apply]
+    whitespace = fix
 
+# remove whitespace and comments from commit messages
 [commit]
-    # remove whitespace and comments from commit messages
     cleanup = strip
+    status = true
     verbose = 1
+    template = ~/.gitmessage
 
+# use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
 [diff]
-    # treat copies as renames too
     renames = copies
-    submodule = short
-    # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
     algorithm = patience
 
+# simulate source code grep (sgrep == grep -HnE)
+[grep]
+    lineNumber = true
+    column = false
+    patternType = extended
+
+# dont autocorrect mistyped commands, print them instead
 [help]
-    # dont autocorrect mistyped commands, print them instead
     autocorrect = 0
 
-[log]
-    # abbreviate commit SHA hashes (for small consoles)
-    abbrevCommit = true
-    # colors to use for git lg
-    graphColors = red,blue,yellow,green,magenta,cyan,white
+[interactive]
+    singleKey = true
 
+# add commit messages to the default merge commit message
 [merge]
-    # add commit messages to the default merge commit message
-    log = true
+    log = 20
+    renames = copies
 
 [push]
-    default = simple
+    default = upstream
     followTags = true
     recurseSubmodules = check
 
-[status]
-    relativePaths = false
-    short = true
-    branch = true
-    showStash = true
+[rebase]
+    abbreviateCommands = false
 
-[submodule]
-    # include --recurse-submodules in commands that support it
-    recurse = true
+[status]
+    renames = copies
 
 [include]
     path = alias.gitconfig
     path = url.gitconfig
-    path = color.gitconfig
+    path = visual.gitconfig
+    path = tool.gitconfig
     # private
     path = user.gitconfig
-    path = override.gitconfig
-	path = de.gitconfig
+    path = local.gitconfig

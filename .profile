@@ -10,6 +10,8 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 export GIT_ASKPASS=/usr/bin/ksshaskpass
 export GIT_SSH=/usr/bin/ssh
 
+# ===================================================================
+
 # dump all editors here for future reference
 export EDITOR=nano
 export VISUAL=nano
