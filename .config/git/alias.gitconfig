@@ -89,8 +89,7 @@
     # sign the last commit with the default key
     resign = ovw -S
 
-    # diff check changes
-    checkpending = diff --check HEAD
-    pending = diff HEAD
-    check = diff --check --cached
+    # diff. changes=commit/index, pending=commit/worktree, diff=index/worktree
     changes = diff --cached
+    pending = diff HEAD
+    check = changes --check

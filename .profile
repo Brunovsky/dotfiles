@@ -45,3 +45,4 @@ export BROWSER=firefox
 
 export GTK_USE_PORTAL=1
 export MOZ_USE_XINPUT2=0
+export RANGER_LOAD_DEFAULT_RC=FALSE
