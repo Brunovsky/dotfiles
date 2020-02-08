@@ -25,7 +25,7 @@
 [commit]
     cleanup = strip
     status = true
-    verbose = 1
+    verbose = 0
     template = ~/.gitmessage
 
 # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26

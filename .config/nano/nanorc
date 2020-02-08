@@ -238,6 +238,7 @@ set functioncolor blue
 ## To include all existing syntax definitions, you can do:
 include "/usr/share/nano/*.nanorc"
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
+include "~/.config/nano/plugins/*.nanorc"
 
 ## If <Tab> should always produce four spaces when editing a Python file,
 ## independent of the settings of 'tabsize' and 'tabstospaces':

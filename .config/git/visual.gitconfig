@@ -48,14 +48,14 @@
     repeatedLines = blue dim
 
 [color "branch"]
-    current = yellow bold
+    current = blue bold
     local = green bold
     remote = cyan bold
     upstream = magenta bold
     plain = white bold
 
 [color "decorate"]
-    current = yellow bold
+    current = blue bold
     branch = green bold
     remoteBranch = cyan bold
     upstream = magenta bold
