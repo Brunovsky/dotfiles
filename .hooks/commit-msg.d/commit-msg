@@ -1,0 +1,42 @@
+#!/bin/bash
+# A git post-commit hook that validates the length of the subject line
+# and body of the commit message.
+
+SUBJECT_MAX_LENGTH=50
+BODY_MAX_LENGTH=72
+
+# ===
+
+COMMIT_MSG_FILE="$1"
+
+TMPFILE="${TMPDIR:-/tmp}/$RANDOM.$RANDOM.$RANDOM.$RANDOM"
+
+# remove comments, then empty lines
+grep -Eve "^#" "$COMMIT_MSG_FILE" > "$TMPFILE"
+
+SUBJECT=$(head -n 1 "$TMPFILE")
+BODY=$(tail -n +2 "$TMPFILE")
+EMPTYLINE=$(head -n 1 <<< "$BODY")
+
+rm "$TMPFILE"
+
+if [[ ${#SUBJECT} -gt $SUBJECT_MAX_LENGTH ]]; then
+	printf "Error: Subject is longer than 50 chars (counted %d chars):\n" ${#SUBJECT}
+	printf "%s" "$SUBJECT"
+	exit 1
+fi
+
+if [[ ${#EMPTYLINE} -gt 0 ]]; then
+	printf "Error: An empty line must separate the subject and the body.\n"
+	printf "%s" "$SUBJECT"
+	exit 1
+fi
+
+while read -r line
+do
+	if [[ ${#line} -gt $BODY_MAX_LENGTH ]]; then
+		printf "Error: Body is longer than 72 chars (counted %d chars):\n" ${#line}
+		printf "%s" "$line"
+		exit 1
+	fi
+done <<< "$BODY"
