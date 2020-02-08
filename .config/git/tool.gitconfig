@@ -18,9 +18,6 @@
 [mergetool "meld"]
     trustExitCode = true
 
-[mergetool "smerge"]
-    trustExitCode = true
-
 [mergetool "vscode"]
     cmd = code --wait $MERGED
     trustExitCode = false
