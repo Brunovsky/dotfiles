@@ -86,7 +86,7 @@ set linenumbers
 ## mouse clicks can be used to place the cursor, set the mark (with a
 ## double click), and execute shortcuts.  The mouse will work in the X
 ## Window System, and on the console when gpm is running.
-# set mouse
+set mouse
 
 ## Switch on multiple file buffers (inserting a file will put it into
 ## a separate buffer).
@@ -108,7 +108,7 @@ set linenumbers
 # set operatingdir ""
 
 ## Remember the cursor position in each file for the next editing session.
-# set positionlog
+set positionlog
 
 ## Preserve the XON and XOFF keys (^Q and ^S).
 # set preserve
@@ -193,27 +193,18 @@ set tabsize 4
 
 ## Let an unmodified Backspace or Delete erase the marked region (instead
 ## of a single character, and without affecting the cutbuffer).
-# set zap
+set zap
 
 ## Paint the interface elements of nano.  These are examples;
 ## by default there are no colors, except for errorcolor.
-set titlecolor brightwhite,blue
-set statuscolor brightwhite,green
-set errorcolor brightwhite,red
-set selectedcolor brightwhite,magenta
+set titlecolor brightwhite,black
+set statuscolor white,black
+set errorcolor white,red
+set selectedcolor ,black
 set stripecolor ,yellow
-set numbercolor cyan
-set keycolor cyan
-set functioncolor green
-## In root's .nanorc you might want to use:
-# set titlecolor brightwhite,magenta
-# set statuscolor brightwhite,magenta
-# set errorcolor brightwhite,red
-# set selectedcolor brightwhite,cyan
-# set stripecolor ,yellow
-# set numbercolor magenta
-# set keycolor brightmagenta
-# set functioncolor magenta
+set numbercolor black
+set keycolor brightmagenta
+set functioncolor blue
 
 
 ## Setup of syntax coloring.

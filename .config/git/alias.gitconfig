@@ -22,14 +22,12 @@
     a   = add
     ai  = add -i
     au  = add -u
-    b   = branch
     br  = branch
-    c   = commit
-    co  = commit
     cm  = commit
     cl  = clone --recursive
     d   = diff
     dc  = diff --cached
+    dh  = diff HEAD
     dt  = difftool
     dct = difftool --cached
     f   = fetch
@@ -46,8 +44,6 @@
     mc  = merge --continue
     ms  = merge --skip
     mq  = merge --quit
-    o   = checkout
-    ob  = checkout -b
     ps  = push
     pl  = pull --recurse-submodules
     pla = pull --recurse-submodules --all
@@ -61,12 +57,9 @@
     rem = reset --mixed
     res = reset --soft
     rs  = restore
-    rst = restore
     rmt = remote
-    s   = status
     st  = status
     sm  = submodule
-    sub = submodule
     sw  = switch
     # ===== ===== ===== ===== ===== =====
 
