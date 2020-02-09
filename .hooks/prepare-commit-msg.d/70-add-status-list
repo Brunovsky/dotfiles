@@ -5,10 +5,13 @@
 # to the body of the commit message, just after '#FILES'.
 # Does nothing if the '#FILES' doesn't exist.
 
+COMMIT_MSG_FILE="$1"
+COMMIT_SOURCE="$2"
+SHA1="$3"
 TMPFILE="${TMPDIR:-/tmp}/$RANDOM.$RANDOM.$RANDOM.$RANDOM"
 
 if [[ $COMMIT_SOURCE = template ]]; then
 	git diff --cached --name-only | sed -E -e 's/(.*)/#- \1:/g' > "$TMPFILE"
-	sed -i -e "/#FILES/r $TMPFILE" $COMMIT_MSG_FILE
+	sed -i -e "/#FILES/r $TMPFILE" "$COMMIT_MSG_FILE"
 	rm "$TMPFILE"
 fi
