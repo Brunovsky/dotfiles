@@ -7,7 +7,7 @@
 # subject:  %s
 # date:     %C(cyan)(%ar)%Creset
 # gpg:      %C(auto,magenta)% G?%Creset
-# refs:     %C(auto)%d%Creset             same on the left
+# refs:     %C(auto)%d%Creset             space on the left
 [pretty]
     # date author subject
     das = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %C(cyan)%>(12,trunc)%ar%Creset %C(green)%an%Creset %s%C(auto)%d%Creset
@@ -18,50 +18,23 @@
 
 
 [alias]
-    # ===== ===== ===== ===== ===== =====
-    a   = add
-    ai  = add -i
-    au  = add -u
-    br  = branch
-    cm  = commit
-    cl  = clone --recursive
-    d   = diff
-    dc  = diff --cached
-    dh  = diff HEAD
-    dt  = difftool
-    dct = difftool --cached
-    f   = fetch
-    fa  = fetch --all
-    fp  = format-patch
-    g   = grep -p
+    # small add shortcuts
+    addi = add -i
+    addu = add -u
+
+    # pretty logs
     l   = log --pretty=dsa
     lg  = log --pretty=dsa --graph
     ll  = log --pretty=medium --date=human
     llg = log --pretty=medium --date=human --graph
+
     ls  = ls-files
-    m   = merge
-    ma  = merge --abort
-    mc  = merge --continue
-    ms  = merge --skip
-    mq  = merge --quit
-    ps  = push
-    pl  = pull --recurse-submodules
-    pla = pull --recurse-submodules --all
-    rb  = rebase
-    rbi = rebase --interactive
-    rba = rebase --abort
-    rbc = rebase --continue
-    rbs = rebase --skip
-    re  = reset
-    reh = reset --hard
-    rem = reset --mixed
-    res = reset --soft
-    rs  = restore
-    rmt = remote
     st  = status
-    sm  = submodule
     sw  = switch
-    # ===== ===== ===== ===== ===== =====
+    sub = submodule
+
+    # pull from all remotes and recurse submodules
+    pull-all = pull --recurse-submodules --all
 
     # view info, verbose version
     tags = tag -l
@@ -93,3 +66,7 @@
     changes = diff --cached
     pending = diff HEAD
     check = changes --check
+
+    # difftool, changes=commit/index, pending=commit/worktree, diff=index/worktree
+    changestool = difftool --cached
+    pendingtool = difftool HEAD

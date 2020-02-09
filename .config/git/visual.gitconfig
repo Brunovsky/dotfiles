@@ -44,43 +44,14 @@
     hint = green
 
 [color "blame"]
-    highlightRecent = magenta,12 month ago,blue,2 month ago,cyan,2 week ago,white,3 day ago,green,8 hour ago,green bold,1 hour ago
+    highlightRecent = magenta,12 month ago,blue,2 month ago,cyan,2 week ago,white,3 day ago,green,8 hour ago,green bold
     repeatedLines = blue dim
-
-[color "branch"]
-    current = blue bold
-    local = green bold
-    remote = cyan bold
-    upstream = magenta bold
-    plain = white bold
-
-[color "decorate"]
-    current = blue bold
-    branch = green bold
-    remoteBranch = cyan bold
-    upstream = magenta bold
-    tag = white bold
-    stash = blue bold
-    HEAD = red bold
 
 # dense and frequent, don't overuse bold
 [color "diff"]
     meta = magenta
     frag = magenta italic dim
-    commit = blue
     whitespace = yellow reverse
-    new = green
-    old = red
-    newDimmed = green italic
-    oldDimmed = red dim italic
-    newBold = green bold
-    oldBold = red bold
-    newMoved = cyan italic
-    oldMoved = blue dim
-    newMovedAlternative = cyan
-    oldMovedAlternative = blue dim italic
-    contextDimmed = white dim italic
-    contextBold = white bold
 
 # imitate default GREP_COLORS
 [color "grep"]
@@ -109,12 +80,8 @@
 
 # dense and frequent, don't overuse bold
 [color "status"]
-    added = green
-    changed = yellow
     untracked = magenta
     unmerged = red bold
-    localBranch = blue bold
-    remoteBranch = cyan bold
 
 [color "transport"]
     rejected = red bold
