@@ -18,11 +18,6 @@
 
 
 [alias]
-    # small add shortcuts
-    addi  = add -i
-    addu  = add -u
-    stage = add
-
     # pretty logs
     l   = log --pretty=dsa
     lg  = log --pretty=dsa --graph
@@ -45,12 +40,14 @@
     # view other info
     aliases = config --get-regexp alias
     contributors = shortlog --summary --numbered
-    whoami = config user.email
+    whoami = config --get-regexp user
 
     # view last commit
     last = log -1 HEAD --stat --compact-summary
 
-    # remove from staging area, i.e. unstage something
+    # staging area <-> worktree
+    addu = add -u
+    stage = add
     unstage = reset HEAD --
     unadd = unstage
 
@@ -61,7 +58,7 @@
     commit-inherit = commit --reuse-message=HEAD
 
     # sign the last commit with the default key
-    resign = ovw -S
+    resign = recommit -S
 
     # diff. changes=commit/index, pending=commit/worktree, diff=index/worktree
     changes = diff --cached
