@@ -9,7 +9,6 @@
 # https://github.com/LukeSmithxyz/voidrice
 
 # source shell files
-[[ ! -f ~/.profile ]] || . ~/.profile
 [[ ! -f ~/.dir_colors ]] || eval "$(dircolors ~/.dir_colors)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

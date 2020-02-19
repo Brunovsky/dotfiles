@@ -64,11 +64,19 @@ alias carerename 'rename --no-overwrite --verbose'
 alias carerm 'rm --interactive --dir --verbose'
 alias careln 'ln --interactive --verbose'
 
+# I can't seem to remember this
+alias lnorder 'echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
+    -s for symbolic, -T to treat SINK as a normal file"'
+
 alias mkdir 'mkdir --parents --verbose'
 alias rmdir 'rmdir --verbose'
 
 alias rsynccp 'rsync -ae ssh -vh --progress'
 alias rsynctransfer 'rsync -ae ssh -vh --info=progress2 --no-inc-recursive'
+
+function mkcd --description 'mkdir followed by cd' --wraps cd
+	mkdir $argv[1] && cd $argv[1]
+end
 
 # move around
 # ===========
@@ -87,12 +95,15 @@ alias .5 'cd ../../../../..'
 # simple functions
 # ================
 
-alias path 'echo $PATH | tr -s " " "\n"'
 alias df 'df --si'
 alias du 'du --si -cs'
 alias tree 'tree --si -F --dirsfirst -vas -L 3 --filelimit 1000'
 alias bc 'bc --interactive --mathlib'
 alias ffmpeg 'ffmpeg -hide_banner'
+
+# split a path aggregator
+alias splitcolon 'tr -s " " "\n"'
+alias path 'echo $PATH | splitcolon'
 
 # invoke valgrind to debug memory leaks
 alias memcheck 'valgrind --leak-check=full --show-leak-kinds=all'
@@ -104,12 +115,12 @@ alias sigrep 'grep -HniE'
 # dotfiles
 alias dotf 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-# I can't seem to remember this
-alias lnorder 'echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
-    -s for symbolic, -T to treat SINK as a normal file"'
-
 # pretty print json
 alias prettyjson='python -m json.tool'
 
 # copy to clipboard
 alias clipclip 'xclip -selection clipboard'
+
+# grep man pages
+alias mangrep 'man -KI --regex'
+alias manigrep 'man -Ki --regex'
