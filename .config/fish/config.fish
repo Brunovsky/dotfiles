@@ -101,6 +101,8 @@ alias tree 'tree --si -F --dirsfirst -vas -L 3 --filelimit 1000'
 alias bc 'bc --interactive --mathlib'
 alias ffmpeg 'ffmpeg -hide_banner'
 
+alias yield_bash 'export BASH_NOYIELD=1'
+
 # split a path aggregator
 alias splitcolon 'tr -s " " "\n"'
 alias path 'echo $PATH | splitcolon'
