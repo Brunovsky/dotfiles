@@ -19,8 +19,9 @@
 
 [alias]
     # small add shortcuts
-    addi = add -i
-    addu = add -u
+    addi  = add -i
+    addu  = add -u
+    stage = add
 
     # pretty logs
     l   = log --pretty=dsa
@@ -56,8 +57,8 @@
     # amend the HEAD commit
     amend = commit --amend
     ammend = amend
-    overwrite = amend --reuse-message=HEAD
-    ovw = overwrite
+    recommit = amend --reuse-message=HEAD
+    commit-inherit = commit --reuse-message=HEAD
 
     # sign the last commit with the default key
     resign = ovw -S
@@ -70,3 +71,6 @@
     # difftool, changes=commit/index, pending=commit/worktree, diff=index/worktree
     changestool = difftool --cached
     pendingtool = difftool HEAD
+
+    # list all files that have ever existed in the repository
+    ls-ever = !git log --pretty=format: --name-only --diff-filter=A | sort -u

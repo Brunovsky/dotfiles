@@ -43,3 +43,7 @@ trustdb.gpg
 
 .env.prod*
 .prod*.env
+
+# IDEs
+.vscode
+.idea
