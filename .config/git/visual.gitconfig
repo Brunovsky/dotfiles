@@ -52,6 +52,13 @@
     meta = magenta
     frag = magenta italic dim
     whitespace = yellow reverse
+    commit = blue
+    newMoved = cyan dim
+    oldMoved = blue dim
+    newMovedAlternative = cyan italic
+    oldMovedAlternative = blue italic
+    contextDimmed = white dim italic
+    contextBold = white bold
 
 # imitate default GREP_COLORS
 [color "grep"]
