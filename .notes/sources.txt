@@ -19,7 +19,7 @@ https://gitlab.com/dwt1/dotfiles
 # Xresources, aliases, env, zsh
 https://github.com/LukeSmithxyz/voidrice
 
-# nord colors schemes
+# nord, Xresources, dircolors
 https://github.com/arcticicestudio/nord
 
 # git
@@ -57,3 +57,6 @@ https://github.com/s3rvac/dotfiles
 
 # Xresources
 https://gist.github.com/AnthonyDiGirolamo/d2124446c8656eb578a64c9e9dd4cae0
+
+# nord
+https://github.com/carlosal1015/Mailspring-Theme-nord-dark
