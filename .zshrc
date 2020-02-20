@@ -49,7 +49,6 @@ plugins=(
     docker
 )
 
-export _Z_DATA="$XDG_CACHE_HOME/z"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zcompdump-${HOST}-${ZSH_VERSION}"
 
 ZSH_CACHE_DIR="$XDG_CACHE_HOME/oh-my-zsh"

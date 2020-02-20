@@ -39,6 +39,7 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 export GIT_ASKPASS=/usr/bin/ksshaskpass
 export GIT_SSH=/usr/bin/ssh
 export GTK_MODULES=
+export _Z_DATA=$XDG_DATA_HOME/z
 
 # ===================================================================
 
