@@ -4,11 +4,10 @@
 # https://github.com/unixorn/awesome-zsh-plugins
 # https://github.com/ohmyzsh/ohmyzsh
 # https://github.com/romkatv/powerlevel10k
-# https://gitlab.com/dwt1/dotfiles
 # --- prompt and modules
+# https://gitlab.com/dwt1/dotfiles
 # https://github.com/LukeSmithxyz/voidrice
 
-# source shell files
 [[ ! -f ~/.dir_colors ]] || eval "$(dircolors ~/.dir_colors)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -52,7 +51,7 @@ plugins=(
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zcompdump-${HOST}-${ZSH_VERSION}"
 
 ZSH_CACHE_DIR="$XDG_CACHE_HOME/oh-my-zsh"
-[[ ! -d $ZSH_CACHE_DIR ]] && mkdir "$ZSH_CACHE_DIR"
+[[ ! -d $ZSH_CACHE_DIR ]] && mkdir -p "$ZSH_CACHE_DIR"
 
 . "$ZSH/oh-my-zsh.sh"
 
