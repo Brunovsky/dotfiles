@@ -97,7 +97,7 @@ alias .5 'cd ../../../../..'
 
 alias df 'df --si'
 alias du 'du --si -cs'
-alias tree 'tree --si -F --dirsfirst -vas -L 3 --filelimit 1000'
+alias tree 'tree -Fv --dirsfirst'
 alias bc 'bc --interactive --mathlib'
 alias ffmpeg 'ffmpeg -hide_banner'
 

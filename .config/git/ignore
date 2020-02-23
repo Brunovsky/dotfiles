@@ -32,6 +32,10 @@ Thumbs.db
 *.lock
 *.lck
 
+# IDEs
+.vscode
+.idea
+
 # Let's not do something stupid https://xkcd.com/530/
 id_rsa*
 id_dsa*
@@ -41,9 +45,7 @@ pubring.*
 secring.*
 trustdb.gpg
 
+.env
+.environment
 .env.prod*
 .prod*.env
-
-# IDEs
-.vscode
-.idea
