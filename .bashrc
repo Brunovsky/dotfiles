@@ -65,4 +65,4 @@ bind '"\e[D": backward-char'
 
 # yield to better shell
 
-[[ -z $BASH_NOYIELD ]] && exec fish
+[[ $SHLVL -eq 1 && -z $BASH_YIELDED ]] && export BASH_YIELDED=1 && exec fish
