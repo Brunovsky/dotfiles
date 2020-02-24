@@ -98,7 +98,7 @@ alias .5 'cd ../../../../..'
 alias df 'df --si'
 alias du 'du --si -cs'
 alias tree 'tree -Fv --dirsfirst'
-alias bc 'bc --interactive --mathlib'
+alias bc 'bc --interactive --mathlib --quiet'
 alias ffmpeg 'ffmpeg -hide_banner'
 
 alias yield_bash 'export BASH_NOYIELD=1'
