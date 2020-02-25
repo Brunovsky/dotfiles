@@ -80,7 +80,9 @@ alias path='echo $PATH | splitcolon'
 # invoke valgrind to debug memory leaks
 alias memcheck='valgrind --leak-check=full --show-leak-kinds=all'
 
-# source code grep
+# variations of grep
+alias egrep='grep -E'
+alias igrep='grep -iE'
 alias sgrep='grep -HnE'
 alias sigrep='grep -HniE'
 

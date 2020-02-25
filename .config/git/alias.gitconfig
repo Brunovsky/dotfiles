@@ -48,7 +48,7 @@
     # staging area <-> worktree
     addu = add -u
     stage = add
-    unstage = reset HEAD --
+    unstage = restore --staged
     unadd = unstage
 
     # amend the HEAD commit
@@ -71,3 +71,7 @@
 
     # list all files that have ever existed in the repository
     ls-ever = !git log --pretty=format: --name-only --diff-filter=A | sort -u
+
+    # variations of grep
+    sgrep = grep -HnE
+    sigrep = grep -HniE
