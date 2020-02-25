@@ -45,8 +45,8 @@ export VISUAL=nano
 export SUDO_EDITOR=nano
 export MOST_EDITOR=nano
 export PSQL_EDITOR=nano
-export GIT_EDITOR=nano
-export GIT_SEQUENCE_EDITOR=nano
+export GIT_EDITOR='nano -w'
+export GIT_SEQUENCE_EDITOR='nano -w'
 
 # dump all pagers here for future reference
 export PAGER=less

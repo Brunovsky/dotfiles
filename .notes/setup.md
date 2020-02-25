@@ -77,7 +77,6 @@ Overview (this *will* become outdated)
 * `nano` is nice currently and the keybindings are (mostly) trustworthy.
 * `most` is weird sometimes but `less` doesn't like colors so...
 * `fontconfig` is even weirder - sometimes `fc-match` doesn't seem to care.
-* `i3/config` is **not** functional - remove it asap.
 * `psql` can still be improved - it's very primitive without configuration.
 * `gdbinit` is untested.
 * `ranger` can still be improved, but currently it's fine.
