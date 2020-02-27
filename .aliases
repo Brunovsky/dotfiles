@@ -17,18 +17,18 @@ alias ls.="\ls --si --color=auto -bF --group-directories-first -CvA --ignore='[!
 alias ll=llv ls=lsv
 
 # keep the ';' or bash will choke
-llfa() { lla --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
-llfv() { llv --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
-llf.() { ll. --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+ " ; }
-llda() { lla --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
-lldv() { llv --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
-lld.() { ll. --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+ " ; }
-llla() { lla --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
-lllv() { llv --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
-lll.() { ll. --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+ " ; }
-llsa() { lla --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
-llsv() { llv --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
-lls.() { ll. --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+ " ; }
+llfa() { lla --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+" ; }
+llfv() { llv --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+" ; }
+llf.() { ll. --color=always "$@" | grep -Eve "^d([r-][w-][xst-])+" ; }
+llda() { lla --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+" ; }
+lldv() { llv --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+" ; }
+lld.() { ll. --color=always "$@" | grep -Eve "^[^d]([r-][w-][xst-])+" ; }
+llla() { lla --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+" ; }
+lllv() { llv --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+" ; }
+lll.() { ll. --color=always "$@" | grep -Eve "^[^l]([r-][w-][xst-])+" ; }
+llsa() { lla --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+" ; }
+llsv() { llv --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+" ; }
+lls.() { ll. --color=always "$@" | grep -Eve "^[^s]([r-][w-][xst-])+" ; }
 alias llf=llfv lld=lldv lll=lllv lls=llsv
 
 # carefully copy, move, rename, remove and link files
