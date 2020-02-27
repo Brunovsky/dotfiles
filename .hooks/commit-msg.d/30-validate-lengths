@@ -5,6 +5,9 @@
 SUBJECT_MAX_LENGTH=50
 BODY_MAX_LENGTH=72
 
+ERROR='\e[1;31mError\e[0m:'
+WARNING='\e[1;33mWarning\e[0m:'
+
 # ===
 
 COMMIT_MSG_FILE="$1"
@@ -21,13 +24,12 @@ EMPTYLINE=$(head -n 1 <<< "$BODY")
 rm "$TMPFILE"
 
 if [[ ${#SUBJECT} -gt $SUBJECT_MAX_LENGTH ]]; then
-	printf "Error: Subject is longer than 50 chars (counted %d chars):\n" ${#SUBJECT}
+	printf "$WARNING: Subject longer than 50 chars (counted %d):\n" ${#SUBJECT}
 	printf "%s" "$SUBJECT"
-	exit 1
 fi
 
 if [[ ${#EMPTYLINE} -gt 0 ]]; then
-	printf "Error: An empty line must separate the subject and the body.\n"
+	printf "$ERROR: An empty line must separate the subject and the body.\n"
 	printf "%s" "$SUBJECT"
 	exit 1
 fi
@@ -35,8 +37,7 @@ fi
 while read -r line
 do
 	if [[ ${#line} -gt $BODY_MAX_LENGTH ]]; then
-		printf "Error: Body is longer than 72 chars (counted %d chars):\n" ${#line}
+		printf "$WARNING: Body longer than 72 chars (counted %d):\n" ${#line}
 		printf "%s" "$line"
-		exit 1
 	fi
 done <<< "$BODY"
