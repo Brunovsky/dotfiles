@@ -51,6 +51,10 @@ alias rsynccp='rsync -ae ssh -vh --progress'
 alias rsynctransfer='rsync -ae ssh -vh --info=progress2 --no-inc-recursive'
 
 mkcd() { mkdir "$1" && cd "$1" ; }
+swap() {
+	local TMPFILE="${TMPDIR:-/tmp}/swaptmp.$RANDOM.$RANDOM.$RANDOM.$RANDOM"
+	mv "$1" "$TMPFILE" && mv "$2" "$1" && mv "$TMPFILE" "$2"
+}
 
 # move around
 # ===========

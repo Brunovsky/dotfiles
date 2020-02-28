@@ -63,3 +63,6 @@ set backup
 set undofile
 
 syntax on
+
+set exrc
+set secure
