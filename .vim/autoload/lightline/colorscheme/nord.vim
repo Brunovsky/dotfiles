@@ -1,0 +1,1 @@
+../../../git/nord-vim/autoload/lightline/colorscheme/nord.vim

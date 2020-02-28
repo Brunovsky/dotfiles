@@ -45,8 +45,8 @@ export VISUAL=nano
 export SUDO_EDITOR=nano
 export MOST_EDITOR=nano
 export PSQL_EDITOR=nano
-export GIT_EDITOR='nano -w'
-export GIT_SEQUENCE_EDITOR='nano -w'
+export GIT_EDITOR=nano
+export GIT_SEQUENCE_EDITOR=nano
 
 # dump all pagers here for future reference
 export PAGER=less
@@ -60,7 +60,7 @@ export MANLESS='MAN \$MAN_PN  ?ltline %lt?L/%L .. ?pB[%pB\%] . (h=help,q=quit) '
 export MOST_SWITCHES=-swt4
 export MOST_INITFILE=$XDG_CONFIG_HOME/most/mostrc
 
-export MAKEFLAGS=-j8
+export MAKEFLAGS='-j8 --no-print-directory'
 
 # ===================================================================
 

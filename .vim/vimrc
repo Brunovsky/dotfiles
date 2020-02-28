@@ -1,0 +1,65 @@
+" --- ideas
+" https://github.com/miguelpduarte/dotfiles
+" https://github.com/mathiasbynens/dotfiles
+
+set nocompatible
+set autoindent
+filetype plugin indent on
+
+set viminfo=%,'1000,<500,s256
+set viminfofile=~/.vim/viminfo
+set history=10000
+
+set exrc
+set secure
+
+" theme and colors
+" ================
+let g:airline_theme='nord'
+set wildmenu
+set noshowmode
+set showcmd
+set notitle
+
+set number
+set relativenumber
+set cursorline
+set scrolloff=3
+set tabstop=8
+
+" behaviour: cursor xorg
+" ======================
+set modelines=0
+set nomodeline
+
+set splitbelow splitright
+
+set esckeys
+set mouse=a
+set clipboard=unnamedplus
+
+set notimeout ttimeout
+set ttimeoutlen=100
+
+set virtualedit=onemore
+set whichwrap=b,s,<,>,[,]
+
+" search and replace
+" ==================
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wrapscan
+
+" folding and wrapping
+" ====================
+set foldmethod=indent
+set foldenable
+set foldlevelstart=1
+
+" persistent undo across sessions
+set backup
+set undofile
+
+syntax on
