@@ -20,40 +20,40 @@ alias ls. "command ls --si --color=auto -bF --group-directories-first -CvA --ign
 alias ll llv ; alias ls lsv
 
 function llfa --description 'list files' --wraps ls
-    lla --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
+	lla --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
 end
 function llfv --description 'list visible files' --wraps ls
-    llv --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
+	llv --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
 end
 function llf. --description 'list hidden files' --wraps ls
-    ll. --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
+	ll. --color=always $argv | grep -Eve '^d([r-][w-][xst-])+'
 end
 function llda --description 'list folders' --wraps ls
-    lla --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
+	lla --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
 end
 function lldv --description 'list visible folders' --wraps ls
-    llv --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
+	llv --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
 end
 function lld. --description 'list hidden folders' --wraps ls
-    ll. --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
+	ll. --color=always $argv | grep -Eve '^[^d]([r-][w-][xst-])+'
 end
 function llla --description 'list symlinks' --wraps ls
-    lla --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
+	lla --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
 end
 function lllv --description 'list visible symlinks' --wraps ls
-    llv --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
+	llv --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
 end
 function lll. --description 'list hidden symlinks' --wraps ls
-    ll. --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
+	ll. --color=always $argv | grep -Eve '^[^l]([r-][w-][xst-])+'
 end
 function llsa --description 'list sockets' --wraps ls
-    lla --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
+	lla --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
 end
 function llsv --description 'list visible sockets' --wraps ls
-    llv --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
+	llv --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
 end
 function lls. --description 'list hidden sockets' --wraps ls
-    ll. --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
+	ll. --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
 end
 
 alias llf llfv ; alias lld lldv ; alias lll lllv ; alias lls llsv
@@ -68,8 +68,10 @@ alias carerm 'rm --interactive --dir --verbose'
 alias careln 'ln --interactive --verbose'
 
 # I can't seem to remember this
-alias lnorder 'echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
-    -s for symbolic, -T to treat SINK as a normal file"'
+function lnorder --description 'dump ln order'
+	echo -e 'ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)'
+	echo -e '   -s for symbolic, -T to treat SINK as a normal file'
+end
 
 alias mkdir 'mkdir --parents --verbose'
 alias rmdir 'rmdir --verbose'
