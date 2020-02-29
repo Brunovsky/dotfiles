@@ -11,62 +11,65 @@
 # https://github.com/GitAlias/gitalias
 
 [advice]
-    pushUpdateRejected = false
-    statusHints = false
+	pushUpdateRejected = false
+	statusHints = false
 
 [core]
-    autocrlf = input
-    whitespace = trailing-space,space-before-tab,-indent-with-non-tab
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab,-indent-with-non-tab
 
 [apply]
-    whitespace = fix
+	whitespace = fix
 
 # remove whitespace and comments from commit messages
 [commit]
-    cleanup = strip
-    status = true
-    verbose = 0
-    template = ~/.config/git/message
+	cleanup = strip
+	status = true
+	verbose = 0
+	template = ~/.config/git/message
 
 # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
 [diff]
-    renames = copies
-    algorithm = patience
+	renames = copies
+	algorithm = patience
 
 # simulate source code grep (sgrep == grep -HnE)
 [grep]
-    lineNumber = true
-    column = false
-    patternType = extended
+	lineNumber = true
+	column = false
+	patternType = extended
 
 # dont autocorrect mistyped commands, print them instead
 [help]
-    autocorrect = 0
+	autocorrect = 0
 
 [interactive]
-    singleKey = true
+	singleKey = true
+
+[mailmap]
+	file = ~/.config/git/mailmap
 
 # add commit messages to the default merge commit message
 [merge]
-    log = 20
-    renames = copies
+	log = 20
+	renames = copies
 
 [push]
-    default = upstream
-    followTags = true
-    recurseSubmodules = check
+	default = upstream
+	followTags = true
+	recurseSubmodules = check
 
 [rebase]
-    abbreviateCommands = false
+	abbreviateCommands = false
 
 [status]
-    renames = copies
+	renames = copies
 
 [include]
-    path = alias.gitconfig
-    path = url.gitconfig
-    path = visual.gitconfig
-    path = tool.gitconfig
-    # private
-    path = user.gitconfig
-    path = local.gitconfig
+	path = alias.gitconfig
+	path = url.gitconfig
+	path = visual.gitconfig
+	path = tool.gitconfig
+	# private
+	path = user.gitconfig
+	path = local.gitconfig

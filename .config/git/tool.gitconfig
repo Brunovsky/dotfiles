@@ -1,23 +1,23 @@
 [diff]
-    tool = smerge
-    guitool = smerge
+	tool = smerge
+	guitool = smerge
 
 [difftool]
-    prompt = false
+	prompt = false
 
 [difftool "vscode"]
-    cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --wait --diff $LOCAL $REMOTE
 
 [merge]
-    tool = smerge
-    guitool = smerge
+	tool = smerge
+	guitool = smerge
 
 [mergetool]
-    prompt = false
+	prompt = false
 
 [mergetool "meld"]
-    trustExitCode = true
+	trustExitCode = true
 
 [mergetool "vscode"]
-    cmd = code --wait $MERGED
-    trustExitCode = false
+	cmd = code --wait $MERGED
+	trustExitCode = false

@@ -5,18 +5,22 @@
 
 # GitHub: use ssh
 [url "git@github.com:"]
-    insteadOf = "github:"
+	insteadOf = "github:"
 
 # GitHub Gist: use ssh
 [url "git@gist.github.com:"]
-    insteadOf = "gist:"
+	insteadOf = "gist:"
 
 # GitLab: use ssh
 [url "git@gitlab.com:"]
-    insteadOf = "gitlab:"
+	insteadOf = "gitlab:"
 
 # kde: use git/ssh
 [url "git://git.kde.org/"]
-    insteadOf = "kde:"
+	insteadOf = "kde:"
 [url "git@git.kde.org:"]
-    pushInsteadOf = "kde:"
+	pushInsteadOf = "kde:"
+
+# kernel: use git
+[url "git://git.kernel.org/pub/scm/"]
+	insteadOf = "kernel:"

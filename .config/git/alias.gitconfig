@@ -9,69 +9,68 @@
 # gpg:      %C(auto,magenta)% G?%Creset
 # refs:     %C(auto)%d%Creset             space on the left
 [pretty]
-    # date author subject
-    das = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %C(cyan)%>(12,trunc)%ar%Creset %C(green)%an%Creset %s%C(auto)%d%Creset
-    # subject date author
-    sda = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %s %C(cyan)(%ar)%Creset %C(green)%an%Creset%C(auto)%d%Creset
-    # date subject author
-    dsa = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %C(cyan)%>(12,trunc)%ar%Creset %s - %C(green)%an%Creset%C(auto)%d%Creset
+	# date author subject
+	das = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %C(cyan)%>(12,trunc)%ar%Creset %C(green)%an%Creset %s%C(auto)%d%Creset
+	# subject date author
+	sda = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %s %C(cyan)(%ar)%Creset %C(green)%an%Creset%C(auto)%d%Creset
+	# date subject author
+	dsa = %C(blue)%h%Creset%C(auto,magenta)% G?%Creset %C(cyan)%>(12,trunc)%ar%Creset %s - %C(green)%an%Creset%C(auto)%d%Creset
 
 
 [alias]
-    # pretty logs
-    l   = log --pretty=dsa
-    lg  = log --pretty=dsa --graph
-    ll  = log --pretty=medium --date=human
-    llg = log --pretty=medium --date=human --graph
+	# pretty logs
+	l   = log --pretty=dsa
+	lg  = log --pretty=dsa --graph
+	ll  = log --pretty=medium --date=human
+	llg = log --pretty=medium --date=human --graph
 
-    ls  = ls-files
-    st  = status
-    sw  = switch
-    sub = submodule
+	ls  = ls-files
+	st  = status
+	sw  = switch
 
-    # pull from all remotes and recurse submodules
-    pull-all = pull --recurse-submodules --all
+	# pull from all remotes and recurse submodules
+	pull-all = pull --recurse-submodules --all
 
-    # view info, verbose version
-    tags = tag -l
-    branches = branch -avv
-    remotes = remote -v
+	# view info, verbose version
+	tags = tag -l
+	branches = branch -avv
+	remotes = remote -v
 
-    # view other info
-    aliases = config --get-regexp alias
-    contributors = shortlog --summary --numbered
-    whoami = config --get-regexp user
+	# view other info
+	aliases = config --get-regexp alias
+	contributors = shortlog --summary --numbered
+	whoami = config --get-regexp user
 
-    # view last commit
-    last = log -1 HEAD --stat --compact-summary
+	# view last commit
+	last = show --stat
 
-    # staging area <-> worktree
-    addu = add -u
-    stage = add
-    unstage = restore --staged
-    unadd = unstage
+	# staging area <-> worktree
+	addu = add -u
+	stage = add
+	unstage = restore --staged
+	unadd = unstage
 
-    # amend the HEAD commit
-    amend = commit --amend
-    ammend = amend
-    recommit = amend --reuse-message=HEAD
-    commit-inherit = commit --reuse-message=HEAD
+	# amend the HEAD commit
+	amend = commit --amend
+	ammend = amend
+	recommit = amend --reuse-message=HEAD
+	commit-inherit = commit --reuse-message=HEAD
 
-    # sign the last commit with the default key
-    resign = recommit -S
+	# sign the last commit with the default key
+	resign = recommit -S
 
-    # diff. changes=commit/index, pending=commit/worktree, diff=index/worktree
-    changes = diff --cached
-    pending = diff HEAD
-    check = changes --check
+	# diff. changes=commit/index, pending=commit/worktree, diff=index/worktree
+	changes = diff --cached
+	pending = diff HEAD
+	check = changes --check
 
-    # difftool, changes=commit/index, pending=commit/worktree, diff=index/worktree
-    changestool = difftool --cached
-    pendingtool = difftool HEAD
+	# difftool, changes=commit/index, pending=commit/worktree, diff=index/worktree
+	changestool = difftool --cached
+	pendingtool = difftool HEAD
 
-    # list all files that have ever existed in the repository
-    ls-ever = !git log --pretty=format: --name-only --diff-filter=A | sort -u
+	# list all files that have ever existed in the repository
+	ls-ever = !git log --pretty=format: --name-only --diff-filter=A | sort -u
 
-    # variations of grep
-    sgrep = grep -HnE
-    sigrep = grep -HniE
+	# variations of grep
+	sgrep = grep -HnE
+	sigrep = grep -HniE

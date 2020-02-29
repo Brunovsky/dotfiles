@@ -1,94 +1,94 @@
 [blame]
-    coloring = highlightRecent
-    date = human
+	coloring = highlightRecent
+	date = human
 
 # show output of commands in aligned columns: column,nodense
 [column]
-    ui = auto column nodense
-    branch = auto column nodense
-    clean = auto column nodense
-    status = auto column nodense
-    tag = auto column nodense
+	ui = auto column nodense
+	branch = auto column nodense
+	clean = auto column nodense
+	status = auto column nodense
+	tag = auto column nodense
 
 [diff]
-    dirstat = changes,cumulative,0
-    mnemonicPrefix = true
-    submodule = short
-    colorMoved = true
-    colorMovedWS = ignore-space-change
+	dirstat = changes,cumulative,0
+	mnemonicPrefix = true
+	submodule = short
+	colorMoved = true
+	colorMovedWS = ignore-space-change
 
 [log]
-    abbrevCommit = true
+	abbrevCommit = true
 
 [status]
-    relativePaths = false
-    short = true
-    branch = true
-    aheadBehind = true
-    showStash = true
-    showUntrackedFiles = normal
-    submoduleSummary = true
+	relativePaths = false
+	short = true
+	branch = true
+	aheadBehind = true
+	showStash = true
+	showUntrackedFiles = normal
+	submoduleSummary = true
 
 # color
 # =====
 
 [log]
-    graphColors = red,blue,yellow,green,magenta,cyan,white
+	graphColors = red,blue,yellow,green,magenta,cyan,white
 
 [color]
-    # use colors when outputting to the terminal
-    ui = auto
-    pager = true
+	# use colors when outputting to the terminal
+	ui = auto
+	pager = true
 
 [color "advice"]
-    hint = green
+	hint = green
 
 [color "blame"]
-    highlightRecent = magenta,12 month ago,blue,2 month ago,cyan,2 week ago,white,3 day ago,green,8 hour ago,green bold
-    repeatedLines = blue dim
+	highlightRecent = magenta,12 month ago,blue,2 month ago,cyan,2 week ago,white,3 day ago,green,8 hour ago,green bold
+	repeatedLines = blue dim
 
 # dense and frequent, don't overuse bold
 [color "diff"]
-    meta = magenta
-    frag = magenta italic dim
-    whitespace = yellow reverse
-    commit = blue
-    newMoved = cyan dim
-    oldMoved = blue dim
-    newMovedAlternative = cyan italic
-    oldMovedAlternative = blue italic
-    contextDimmed = white dim italic
-    contextBold = white bold
+	meta = magenta
+	frag = magenta italic dim
+	whitespace = yellow reverse
+	commit = blue
+	newMoved = cyan dim
+	oldMoved = blue dim
+	newMovedAlternative = cyan italic
+	oldMovedAlternative = blue italic
+	contextDimmed = white dim italic
+	contextBold = white bold
 
 # imitate default GREP_COLORS
 [color "grep"]
-    context = dim
-    function = blue dim
-    filename = magenta
-    lineNumber = green
-    column = green
-    match = red bold
-    separator = cyan
+	context = dim
+	function = blue dim
+	filename = magenta
+	lineNumber = green
+	column = green
+	match = red bold
+	separator = cyan
 
 [color "interactive"]
-    header = magenta bold
-    prompt = magenta
-    help = green
-    error = red bold
+	header = magenta bold
+	prompt = magenta
+	help = green
+	error = red bold
 
 [color "push"]
-    error = red bold
+	error = red bold
 
 [color "remote"]
-    hint = green
-    warning = yellow bold
-    success = green bold
-    error = red bold
+	hint = green
+	warning = yellow bold
+	success = green bold
+	error = red bold
 
 # dense and frequent, don't overuse bold
 [color "status"]
-    untracked = magenta
-    unmerged = red bold
+	untracked = magenta
+	unmerged = red bold
 
 [color "transport"]
-    rejected = red bold
+	rejected = red bold
