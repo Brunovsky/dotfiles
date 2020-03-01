@@ -11,12 +11,12 @@
 # ls=short, ll=long
 # v=not dotfiles, .=dotfiles | f=files, d=dirs, l=link, s=socket
 
-alias lla "command ls --si --color=auto -bF --group-directories-first -lvA"
-alias lsa "command ls --si --color=auto -bF --group-directories-first -CvA"
-alias llv "command ls --si --color=auto -bF --group-directories-first -lv"
-alias lsv "command ls --si --color=auto -bF --group-directories-first -Cv"
-alias ll. "command ls --si --color=auto -bF --group-directories-first -lvA --ignore '[!.]*'"
-alias ls. "command ls --si --color=auto -bF --group-directories-first -CvA --ignore '[!.]*'"
+alias lla "/bin/ls --si --color=auto -bF --group-directories-first -lvA"
+alias lsa "/bin/ls --si --color=auto -bF --group-directories-first -CvA"
+alias llv "/bin/ls --si --color=auto -bF --group-directories-first -lv"
+alias lsv "/bin/ls --si --color=auto -bF --group-directories-first -Cv"
+alias ll. "/bin/ls --si --color=auto -bF --group-directories-first -lvA --ignore '[!.]*'"
+alias ls. "/bin/ls --si --color=auto -bF --group-directories-first -CvA --ignore '[!.]*'"
 alias ll llv ; alias ls lsv
 
 function llfa --description 'list files' --wraps ls
@@ -55,7 +55,6 @@ end
 function lls. --description 'list hidden sockets' --wraps ls
 	ll. --color=always $argv | grep -Eve '^[^s]([r-][w-][xst-])+'
 end
-
 alias llf llfv ; alias lld lldv ; alias lll lllv ; alias lls llsv
 
 # carefully copy, move, rename, remove and link files
