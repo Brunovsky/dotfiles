@@ -1,5 +1,7 @@
 -- man 1 psql /Meta-Commands /Variables /Prompting
 
+\set QUIET
+
 -- prompt
 -- ======
 
@@ -25,7 +27,7 @@
 -- =======
 
 \set HISTCONTROL ignoreboth
-\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTFILE ~/.psql_history/ :DBNAME
 \set HISTSIZE 16000
 \set IGNOREOF 1
 
@@ -45,3 +47,5 @@
 
 -- show query timing
 \timing on
+
+\unset QUIET
