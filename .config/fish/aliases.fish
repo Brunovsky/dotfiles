@@ -124,7 +124,7 @@ alias sgrep 'grep -HnE'
 alias sigrep 'grep -HniE'
 
 # dotfiles
-alias dotf 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias .git 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # pretty print json
 alias prettyjson='python -m json.tool'
@@ -135,3 +135,5 @@ alias clipclip 'xclip -selection clipboard'
 # grep man pages
 alias mangrep 'man -KI --regex'
 alias manigrep 'man -Ki --regex'
+
+source ~/.config/fish/local.fish
