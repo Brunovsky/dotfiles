@@ -19,3 +19,6 @@
 [submodule ".config/fish/git/fish-docker-compose"]
 	path = .config/fish/git/fish-docker-compose
 	url = github:brgmnn/fish-docker-compose
+[submodule ".config/fish/git/fish-kubectl-completions"]
+	path = .config/fish/git/fish-kubectl-completions
+	url = github:evanlucas/fish-kubectl-completions
