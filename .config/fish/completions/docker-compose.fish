@@ -1,0 +1,1 @@
+../git/fish-docker-compose/completions/docker-compose.fish

@@ -16,3 +16,6 @@
 [submodule ".vim/git/nord-vim"]
 	path = .vim/git/nord-vim
 	url = github:arcticicestudio/nord-vim
+[submodule ".config/fish/git/fish-docker-compose"]
+	path = .config/fish/git/fish-docker-compose
+	url = github:brgmnn/fish-docker-compose
