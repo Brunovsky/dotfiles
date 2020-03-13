@@ -2,42 +2,73 @@
 # A git post-commit hook that validates the length of the subject line
 # and body of the commit message.
 
-SUBJECT_MAX_LENGTH=50
+SKIP_MERGES=y
+FORCE_SEPARATOR_LINE=y
+
+SUBJECT_WARN_LENGTH=50
+SUBJECT_MAX_LENGTH=72
+BODY_WARN_LENGTH=72
 BODY_MAX_LENGTH=72
 
-ERROR='\e[1;31mError\e[0m:'
-WARNING='\e[1;33mWarning\e[0m:'
+# =====
 
-# ===
+ERROR='\e[1;31mError\e[0m'
+WARN='\e[1;33mWarning\e[0m'
 
-COMMIT_MSG_FILE="$1"
+COMMIT_EDITMSG="$1"
 
-TMPFILE="${TMPDIR:-/tmp}/$RANDOM.$RANDOM.$RANDOM.$RANDOM"
+TMPFILE=$(mktemp "${TMPDIR:-/tmp}/git-validate-lengths.XXXXXXXXXX")
 
-# remove comments, then empty lines
-grep -Eve "^#" "$COMMIT_MSG_FILE" > "$TMPFILE"
+# remove comments, then empty lines at top of file
+grep --color=none -Eve "^#" "$COMMIT_EDITMSG" | sed -e '/./,$!d' >"$TMPFILE"
 
 SUBJECT=$(head -n 1 "$TMPFILE")
 BODY=$(tail -n +2 "$TMPFILE")
-EMPTYLINE=$(head -n 1 <<< "$BODY")
+EMPTYLINE=$(head -n 1 <<<"$BODY")
 
 rm "$TMPFILE"
 
-if [[ ${#SUBJECT} -gt $SUBJECT_MAX_LENGTH ]]; then
-	printf "$WARNING: Subject longer than 50 chars (counted %d):\n" ${#SUBJECT}
-	printf "%s" "$SUBJECT"
+if test $SKIP_MERGES = y && [[ $SUBJECT =~ Merge[[:space:]](branch|tag).* ]]
+then
+	exit 0
 fi
 
-if [[ ${#EMPTYLINE} -gt 0 ]]; then
-	printf "$ERROR: An empty line must separate the subject and the body.\n"
-	printf "%s" "$SUBJECT"
+if test ${#SUBJECT} -gt $SUBJECT_MAX_LENGTH
+then
+	printf "$ERROR: Subject longer than %d chars (counted %d):\n" \
+		$SUBJECT_MAX_LENGTH ${#SUBJECT}
+	printf "%s\n\n" "$SUBJECT"
+	exit 1
+fi
+
+if test ${#SUBJECT} -gt $SUBJECT_WARN_LENGTH
+then
+	printf "$WARN: Subject longer than %d chars (counted %d):\n" \
+		$SUBJECT_WARN_LENGTH ${#SUBJECT}
+	printf "%s\n\n" "$SUBJECT"
+fi
+
+if test $FORCE_SEPARATOR_LINE = y && test ${#EMPTYLINE} -gt 0
+then
+	printf "$ERROR: An empty line must separate the subject from the body.\n"
+	printf "%s\n\n" "$SUBJECT"
 	exit 1
 fi
 
 while read -r line
 do
-	if [[ ${#line} -gt $BODY_MAX_LENGTH ]]; then
-		printf "$WARNING: Body longer than 72 chars (counted %d):\n" ${#line}
-		printf "%s" "$line"
+	if test ${#line} -gt $BODY_MAX_LENGTH
+	then
+		printf "$ERROR: Body longer than %d chars (counted %d):\n" \
+			$BODY_MAX_LENGTH ${#line}
+		printf "%s\n\n" "$line"
+		exit 1
 	fi
-done <<< "$BODY"
+
+	if test ${#line} -gt $BODY_WARN_LENGTH
+	then
+		printf "$WARN: Body longer than %d chars (counted %d):\n" \
+			$BODY_WARN_LENGTH ${#line}
+		printf "%s\n\n" "$line"
+	fi
+done <<<"$BODY"
