@@ -1,3 +1,15 @@
 #!/bin/bash
+# Send a curl request without a body.
 
-curl-send-plain HEAD "$@"
+set -euf -o pipefail
+
+curl-check-domain
+
+if test $# -eq 0
+then
+	ENDP=/
+else
+	ENDP="$1" && shift
+fi
+
+curl-display --head "$CURL_DOMAIN$ENDP" "$@"

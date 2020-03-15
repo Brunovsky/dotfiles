@@ -1,0 +1,4 @@
+# disable warnings for shellcheck
+
+# Expressions don't expand in single quotes
+disable=SC2016
