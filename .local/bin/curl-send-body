@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -euf -o pipefail
+
+if test $# -lt 3
+then
+	echo "Error: Expected 2 arguments but got $#."
+	echo 'Usage:'
+	echo "	\$ $1 \$endpoint \$body [more curl options...]"
+	exit 1
+fi
+
+curl-check-domain
+METHOD="$1" && shift
+ENDP="$1" && shift
+BODY="$1" && shift
+
+# guess json or querystring
+if [[ ${BODY::1} == '{' ]]
+then
+	HEADER=(--header 'Content-Type: application/json')
+else
+	HEADER=()
+fi
+
+curl-display -s -X "$METHOD" "${HEADER[@]}" "$CURL_DOMAIN$ENDP" --data "$BODY" "$@"

@@ -1,0 +1,19 @@
+#!/bin/bash
+set -euf -o pipefail
+
+RESPONSE=$(mktemp "${TMPDIR:-/tmp}/curl-display.XXXXXXXXXX")
+
+curl -s "$@" > "$RESPONSE"
+CHAR=$(head -n1 "$RESPONSE" | cut -c1)
+
+if test "$CHAR" == '{'
+then
+	jq < "$RESPONSE"
+elif test "$CHAR" == '<'
+then
+	cat "$RESPONSE" # need html formatter
+else
+	cat "$RESPONSE"
+fi
+
+rm "$RESPONSE"

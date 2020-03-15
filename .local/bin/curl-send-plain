@@ -1,0 +1,17 @@
+#!/bin/bash
+# Send a curl request without a body.
+
+set -euf -o pipefail
+
+curl-check-domain
+
+METHOD="$1" && shift
+
+if test $# -eq 0
+then
+	ENDP=/
+else
+	ENDP="$1" && shift
+fi
+
+curl-display -X "$METHOD" "$CURL_DOMAIN$ENDP" "$@"

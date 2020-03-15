@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if test -z "$CURL_DOMAIN"
+then
+	echo 'Error: $CURL_DOMAIN is empty, please specify the host'
+	echo 'you would like to send requests to:'
+	echo '	$ export CURL_DOMAIN=http://www.example.com'
+	echo
+	exit 1
+fi

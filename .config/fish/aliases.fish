@@ -105,60 +105,6 @@ alias .3 'cd ../../..'
 alias .4 'cd ../../../..'
 alias .5 'cd ../../../../..'
 
-# curl things
-# ===========
-
-function check_curl_domain --description 'Check variable CURL_DOMAIN'
-	if test -z $CURL_DOMAIN
-		echo 'Error: $CURL_DOMAIN is empty, please specify the host'
-		echo 'you would like to send requests to:'
-		echo '	$ set CURL_DOMAIN "http://www.example.com"'
-		echo
-		return 1
-	end
-end
-
-function curl_display --description 'Format response of request' --wraps curl
-	set -q TMPDIR || set -l TMPDIR "/tmp"
-	set -l TMPFILE (mktemp "$TMPDIR/curl-display.XXXXXXXXXX")
-	curl $argv >"$TMPFILE"
-	set -l CHAR (head -n1 "$TMPFILE" | cut -c1)
-	if test $CHAR = '{'
-		cat "$TMPFILE" | jq
-	else if test $CHAR = '<'
-		cat "$TMPFILE" # pending a good program...
-	else
-		cat "$TMPFILE"
-	end
-	rm "$TMPFILE"
-end
-
-function GET --description 'Send GET request' -a ENDP
-	check_curl_domain || return 1
-	curl_display -s -X GET "$CURL_DOMAIN$ENDP"
-end
-
-function DELETE --description 'Send DELETE request' -a ENDP
-	check_curl_domain || return 1
-	curl_display -s -X DELETE "$CURL_DOMAIN$ENDP"
-end
-
-function POST --description 'Send POST request' -a ENDP DATA
-	check_curl_domain || return 1
-	## assume json if the data string starts with '{'
-	if ! test -n "$DATA"
-		echo 'Error: Missing payload (request body, second argument)'
-		return 1
-	end
-	if test (string sub -l1 "$DATA") = '{'
-		curl_display -s -X POST --header 'Content-Type: application/json' \
-			"$CURL_DOMAIN$ENDP" --data "$DATA" $argv[3..-1]
-	else
-		curl_display -s -X POST \
-			"$CURL_DOMAIN$ENDP" --data "$DATA" $argv[3..-1]
-	end
-end
-
 # simple functions
 # ================
 
