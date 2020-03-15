@@ -1,6 +1,6 @@
-[[ -f ~/.profile ]] && . ~/.profile
+test -f ~/.profile && . ~/.profile
 
-if [ -n "$DESKTOP_SESSION" ]; then
-    eval $(gnome-keyring-daemon --start)
+if test -n "$DESKTOP_SESSION"; then
+    eval "$(gnome-keyring-daemon --start)"
     export SSH_AUTH_SOCK
 fi

@@ -1,22 +1,28 @@
 appendpath() {
-	P=$1
-	A=$2
-	O=$3
-	[[ ! -z $A ]] || A=PATH
-	if [[ :${!A}: != *:$P:* ]]; then
-		if [[ -z ${!A} ]]; then
-			export $A="$P"
-		elif [[ $O = APPEND ]]; then
-			export $A="${!A}:$P"
+	path="$1" ; list="$2" ; conf="$3"
+	test -n "$list" || list=PATH
+
+    # fucking shit hack
+    # https://www.google.com/search?q=posix+shell+indirect+expansion
+    expanded=$(eval echo -n \$$list)
+
+	case ":$expanded:" in
+	  *:"$path":*)
+		;;
+	  *)
+		if test -z "$expanded"; then
+			export $list="$path"
+		elif test "$conf" == "APPEND"; then
+			export $list="$expanded:$path"
 		else
-			export $A="$P:${!A}"
+			export $list="$path:$expanded"
 		fi
-	fi
+	esac
 }
 
 # ===================================================================
 
-[[ -z $TMPDIR ]] && export TMPDIR=/tmp
+test -n "$TMPDIR" || export TMPDIR=/tmp
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache

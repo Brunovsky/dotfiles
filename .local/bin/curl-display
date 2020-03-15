@@ -3,7 +3,7 @@ set -euf -o pipefail
 
 RESPONSE=$(mktemp "${TMPDIR:-/tmp}/curl-display.XXXXXXXXXX")
 
-curl -s "$@" > "$RESPONSE"
+curl -Ss "$@" > "$RESPONSE"
 CHAR=$(head -n1 "$RESPONSE" | cut -c1)
 
 if test "$CHAR" == '{'

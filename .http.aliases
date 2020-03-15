@@ -1,0 +1,71 @@
+# curl things
+# ===========
+
+hr() {
+	local BACKEND="$1"
+
+	if ! test -f ~/.local/share/curl_domains; then
+		echo 'Error: Please create ~/.local/share/curl_domains file.'
+		echo 'Usage (afterwards): hr $ALIAS'
+		return 1
+	fi
+
+	declare -a ROWS NAMES DOMAINS
+	mapfile -t ROWS < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains)
+	mapfile -t NAMES < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
+	mapfile -t DOMAINS < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $2}')
+
+	# handle 'hr --help'
+	if test "$BACKEND" == "--help"; then
+		echo 'Usage: hr $ALIAS'
+		echo 'Here is your list of backends:'
+		for i in "${!ROWS[@]}"; do
+			echo "${ROWS[$i]}"
+		done
+		return 0
+	fi
+
+	# handle 'hr', respond with current domain
+	if test -z "$BACKEND"; then
+		if test -z "$CURL_DOMAIN"; then
+			echo 'No domain is set.'
+			return 1
+		fi
+		for i in "${!DOMAINS[@]}"; do
+			if test "$CURL_DOMAIN" == "${DOMAINS[$i]}"; then
+				echo "${ROWS[$i]}"
+				return 0
+			fi
+		done
+		echo 'Unknown'
+		return 0
+	fi
+
+	# handle 'hr $BACKEND', switch current domain
+	for i in "${!NAMES[@]}"; do
+		if test "$BACKEND" == "${NAMES[$i]}"; then
+			export CURL_DOMAIN="${DOMAINS[$i]}"
+			echo "${ROWS[$i]}"
+			return 0
+		fi
+	done
+
+	echo "Error: Didn't find that backend :(  Here's a list:"
+	for i in "${!ROWS[@]}"; do
+		echo "${ROWS[$i]}"
+	done
+	return 1
+}
+
+_hr() {
+	if test "$COMP_CWORD" -eq 1; then
+		local cur=${COMP_WORDS[COMP_CWORD]}
+		local names
+        names=$(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
+		mapfile -t COMPREPLY < <(compgen -W "--help $names" -- "$cur")
+	else
+		COMPREPLY=()
+	fi
+}
+
+complete -F _hr hr

@@ -2,3 +2,6 @@
 
 # Expressions don't expand in single quotes
 disable=SC2016
+
+# Can't follow non-constant source
+disable=SC1090
