@@ -57,7 +57,7 @@
 	commit-inherit = commit --reuse-message=HEAD
 
 	# sign the last commit with the default key
-	resign = recommit -S
+	sign = recommit -S
 
 	# diff. changes=commit/index, pending=commit/worktree, diff=index/worktree
 	changes = diff --cached

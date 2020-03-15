@@ -29,12 +29,11 @@
 .DS_Store*
 Icon?
 Thumbs.db
-*.lock
 *.lck
 
 # IDEs
-.vscode
-.idea
+.vscode/
+.idea/
 
 # Let's not do something stupid https://xkcd.com/530/
 id_rsa*
@@ -44,8 +43,3 @@ id_ecdsa*
 pubring.*
 secring.*
 trustdb.gpg
-
-.env
-.environment
-.env.prod*
-.prod*.env

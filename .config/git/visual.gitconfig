@@ -21,7 +21,7 @@
 	abbrevCommit = true
 
 [status]
-	relativePaths = false
+	relativePaths = true
 	short = true
 	branch = true
 	aheadBehind = true

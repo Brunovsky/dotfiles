@@ -1,3 +1,4 @@
 [user]
 	name = @name@
 	email = @email@
+	signingKey = @key@

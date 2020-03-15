@@ -13,6 +13,7 @@
 [advice]
 	pushUpdateRejected = false
 	statusHints = false
+	statusUoption = false
 
 [core]
 	autocrlf = input
@@ -27,6 +28,7 @@
 	status = true
 	verbose = 0
 	template = ~/.config/git/message
+	gpgSign = true
 
 # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
 [diff]
@@ -61,6 +63,7 @@
 
 [rebase]
 	abbreviateCommands = false
+	autoSquash = true
 
 [status]
 	renames = copies
