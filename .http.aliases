@@ -61,7 +61,7 @@ _hr() {
 	if test "$COMP_CWORD" -eq 1; then
 		local cur=${COMP_WORDS[COMP_CWORD]}
 		local names
-        names=$(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
+		names=$(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
 		mapfile -t COMPREPLY < <(compgen -W "--help $names" -- "$cur")
 	else
 		COMPREPLY=()
@@ -69,3 +69,19 @@ _hr() {
 }
 
 complete -F _hr hr
+
+# httpie things
+# =============
+
+short-http() {
+	METHOD="$1" ; ENDP="$2" ; shift 2
+	http "$METHOD" "$CURL_DOMAIN$ENDP" "$@"
+}
+
+GET() { short-http GET "$@" ; }
+HEAD() { short-http HEAD "$@" ; }
+POST() { short-http POST "$@" ; }
+PATCH() { short-http PATCH "$@" ; }
+PUT() { short-http PUT "$@" ; }
+DELETE() { short-http DELETE "$@" ; }
+OPTIONS() { short-http OPTIONS "$@" ; }

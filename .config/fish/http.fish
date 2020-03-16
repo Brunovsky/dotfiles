@@ -50,3 +50,16 @@ function hr --description 'Switch http domain' -a BACKEND
 end
 
 complete -x -c hr -a '(grep -Eve \'^#|^\s*$\' ~/.local/share/curl_domains)'
+
+# httpie things
+# =============
+
+function short-http --wraps http -a METHOD -a ENDP
+	http "$METHOD" "$CURL_DOMAIN$ENDP" $argv[3..-1]
+end
+
+for verb in GET HEAD POST PATCH PUT DELETE OPTIONS
+	function $verb --wraps short-http
+		short-http $verb $argv
+	end
+end
