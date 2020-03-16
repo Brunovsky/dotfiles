@@ -1,19 +1,29 @@
 root = true
 
 # man 5 editorconfig-format
+# as of v0.12, the options below for * are all there is.
 
 [*]
-charset = utf-8
-end_of_line = lf
 indent_style = space
 indent_size = 4
-insert_final_newline = true
+end_of_line = lf
+charset = utf-8
 trim_trailing_whitespace = true
+insert_final_newline = true
+#tab_width = $indent_size
+
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
 
 [Makefile*]
 indent_style = tab
 indent_size = 4
 
-[*.{yml,yaml}]
-indent_style = space
-indent_size = 2
+[*.{fish,sh,bash,zsh}]
+indent_style = tab
+indent_size = 4
+
+[{*.gitconfig},git/config]
+indent_style = tab
+indent_size = 8
