@@ -1,19 +1,31 @@
 #!/bin/bash
 set -euf -o pipefail
 
-RESPONSE=$(mktemp "${TMPDIR:-/tmp}/curl-display.XXXXXXXXXX")
+# temporary file to store the response
+RES_FILE=$(mktemp "${TMPDIR:-/tmp}/curl-display.body.XXXXXXXXXX")
 
-curl -Ss "$@" > "$RESPONSE"
-CHAR=$(head -n1 "$RESPONSE" | cut -c1)
+# temporary file to store the headers
+HEADERS_FILE=$(mktemp "${TMPDIR:-/tmp}/curl-display.headers.XXXXXXXXXX")
 
-if test "$CHAR" == '{'
-then
-	jq < "$RESPONSE"
-elif test "$CHAR" == '<'
-then
-	cat "$RESPONSE" # need html formatter
+# semi-permanent file to store cookies
+COOKIE_FILE="$HOME/.cache/http/${CURL_DOMAIN:-no_domain}"
+mkdir -p "$HOME/.cache/http/"
+
+curl -Ss -D "$HEADERS_FILE" --cookie-jar "$COOKIE_FILE" "$@" > "$RES_FILE"
+
+# grep Content-Type
+CONTENT_TYPE=$(grep -Eie "^content-type:" "$HEADERS_FILE")
+
+cat "$HEADERS_FILE"
+
+if test -z "$CONTENT_TYPE"; then
+	cat "RES_FILE"
+elif [[ $CONTENT_TYPE == *application/json* ]]; then
+	jq < "$RES_FILE"
+elif [[ $CONTENT_TYPE == *text/html* ]]; then
+	cat "$RES_FILE" # need html formatter
 else
-	cat "$RESPONSE"
+	cat "$RES_FILE"
 fi
 
-rm "$RESPONSE"
+rm "$RES_FILE" "$HEADERS_FILE"
