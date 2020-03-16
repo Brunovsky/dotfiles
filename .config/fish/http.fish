@@ -58,8 +58,10 @@ function short-http --wraps http -a METHOD -a ENDP
 	http "$METHOD" "$CURL_DOMAIN$ENDP" $argv[3..-1]
 end
 
-for verb in GET HEAD POST PATCH PUT DELETE OPTIONS
-	function $verb --wraps short-http
-		short-http $verb $argv
-	end
-end
+function GET --wraps short-http ; short-http GET $argv ; end
+function HEAD --wraps short-http ; short-http HEAD $argv ; end
+function POST --wraps short-http ; short-http POST $argv ; end
+function PATCH --wraps short-http ; short-http PATCH $argv ; end
+function PUT --wraps short-http ; short-http PUT $argv ; end
+function DELETE --wraps short-http ; short-http DELETE $argv ; end
+function OPTIONS --wraps short-http ; short-http OPTIONS $argv ; end
