@@ -86,8 +86,15 @@ function mkcd --description 'mkdir followed by cd' --wraps cd
 	mkdir $argv[1] && cd $argv[1]
 end
 function swap --description 'swap two files or folders'
+    if test (count $argv) -ne 2
+        echo 'Usage: swap $file1 $file2' ; return 1
+    end
+    if test $argv[1] = $argv[2]
+        echo 'Ok' ; return 0
+    end
 	set -q TMPDIR || set -l TMPDIR "/tmp"
 	set -l TMPFILE (mktemp "$TMPDIR/swap.XXXXXXXXXX")
+    touch $argv[1] $argv[2]
 	mv $argv[1] "$TMPFILE" && mv $argv[2] $argv[1] && mv "$TMPFILE" $argv[2]
 end
 

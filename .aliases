@@ -52,7 +52,14 @@ alias rsynctransfer='rsync -ae ssh -vh --info=progress2 --no-inc-recursive'
 
 mkcd() { mkdir "$1" && cd "$1" ; }
 swap() {
-	local TMPFILE="${TMPDIR:-/tmp}/swaptmp.$RANDOM.$RANDOM.$RANDOM.$RANDOM"
+    if test $# -ne 2; then
+        echo 'Usage: swap $file1 $file2' ; return 1
+    fi
+    if test "$1" == "$2"; then
+        echo 'Ok' ; return 0
+    fi
+	local TMPFILE="$(mktemp "${TMPDIR:-/tmp}/swaptmp.XXXXXXXXXX")"
+    touch "$1" "$2"
 	mv "$1" "$TMPFILE" && mv "$2" "$1" && mv "$TMPFILE" "$2"
 }
 
