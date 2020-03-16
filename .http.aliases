@@ -3,17 +3,21 @@
 
 hr() {
 	local BACKEND="$1"
+	local file="$XDG_DATA_HOME/curl_domains"
 
-	if ! test -f ~/.local/share/curl_domains; then
-		echo 'Error: Please create ~/.local/share/curl_domains file.'
+	if ! test -f "$file"; then
+		echo "Error: Please create $file."
+		echo 'Syntax: "#" for comments, one alias/line with 0 or more options:'
+		echo '  $alias $domain $http-options'
 		echo 'Usage (afterwards): hr $ALIAS'
 		return 1
 	fi
 
-	declare -a ROWS NAMES DOMAINS
-	mapfile -t ROWS < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains)
-	mapfile -t NAMES < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
-	mapfile -t DOMAINS < <(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $2}')
+	declare -a ROWS NAMES DOMAINS OPTIONS
+	mapfile -t ROWS    < <(awk '!/^\s*#|^\s*$/ {print $0}' "$file")
+	mapfile -t NAMES   < <(awk '!/^\s*#|^\s*$/ {print $1}' "$file")
+	mapfile -t DOMAINS < <(awk '!/^\s*#|^\s*$/ {print $2}' "$file")
+	mapfile -t OPTIONS < <(awk '!/^\s*#|^\s*$/ {$1=$2=""; print $0}' "$file")
 
 	# handle 'hr --help'
 	if test "$BACKEND" == "--help"; then
@@ -45,6 +49,7 @@ hr() {
 	for i in "${!NAMES[@]}"; do
 		if test "$BACKEND" == "${NAMES[$i]}"; then
 			export CURL_DOMAIN="${DOMAINS[$i]}"
+			export CURL_OPTIONS="${OPTIONS[$i]}"
 			echo "${ROWS[$i]}"
 			return 0
 		fi
@@ -61,7 +66,7 @@ _hr() {
 	if test "$COMP_CWORD" -eq 1; then
 		local cur=${COMP_WORDS[COMP_CWORD]}
 		local names
-		names=$(grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
+		names=$(awk '!/^\s*#|^\s*$/ {print $1}' "$XDG_DATA_HOME/curl_domains")
 		mapfile -t COMPREPLY < <(compgen -W "--help $names" -- "$cur")
 	else
 		COMPREPLY=()
@@ -74,8 +79,12 @@ complete -F _hr hr
 # =============
 
 short-http() {
-	METHOD="$1" ; ENDP="$2" ; shift 2
-	http "$METHOD" "$CURL_DOMAIN$ENDP" "$@"
+	METHOD="$1" ; ENDP="" ; shift 1
+	if test $# -ne 0; then
+		ENDP="$2" ; shift 2
+	fi
+	# shellcheck disable=SC2086
+	http "$METHOD" "$CURL_DOMAIN$ENDP" $CURL_OPTIONS "$@"
 }
 
 GET() { short-http GET "$@" ; }

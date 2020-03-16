@@ -2,14 +2,18 @@
 # ===========
 
 function hr --description 'Switch http domain' -a BACKEND
-	if ! test -f ~/.local/share/curl_domains
-		echo 'Error: Please create ~/.local/share/curl_domains file.'
-		return 1
+	set -l file "$XDG_DATA_HOME/curl_domains"
+	if ! test -f "$file"
+		echo "Error: Please create $file."
+		echo 'Syntax: "#" for comments, one alias/line with 0 or more options:'
+		echo '  $alias $domain $http-options'
+		echo 'Usage (afterwards): hr $ALIAS'
 	end
 
-	set -l ROWS (grep -Eve '^#|^\s*$' ~/.local/share/curl_domains)
-	set -l NAMES (grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $1}')
-	set -l DOMAINS (grep -Eve '^#|^\s*$' ~/.local/share/curl_domains | awk '{print $2}')
+	set -l ROWS    (awk '!/^\s*#|^\s*$/ {print $0}' "$file")
+	set -l NAMES   (awk '!/^\s*#|^\s*$/ {print $1}' "$file")
+	set -l DOMAINS (awk '!/^\s*#|^\s*$/ {print $2}' "$file")
+	set -l OPTIONS (awk '!/^\s*#|^\s*$/ {$1=$2=""; print $0}' "$file")
 
 	# handle 'hr --help'
 	if test "$BACKEND" = "--help"
@@ -37,6 +41,7 @@ function hr --description 'Switch http domain' -a BACKEND
 	for i in (seq 1 (count $NAMES))
 		if test "$BACKEND" = "$NAMES[$i]"
 			set -gx CURL_DOMAIN "$DOMAINS[$i]"
+			set -gx CURL_OPTIONS (string split -n ' ' $OPTIONS[$i])
 			echo "$ROWS[$i]"
 			return 0
 		end
@@ -49,13 +54,13 @@ function hr --description 'Switch http domain' -a BACKEND
 	return 1
 end
 
-complete -x -c hr -a '(grep -Eve \'^#|^\s*$\' ~/.local/share/curl_domains)'
+complete -x -c hr -a '(awk \'!/^\s*#|^\s*$/ {print $1 "\t" $2}\' "$XDG_DATA_HOME/curl_domains")'
 
 # httpie things
 # =============
 
 function short-http --wraps http -a METHOD -a ENDP
-	http "$METHOD" "$CURL_DOMAIN$ENDP" $argv[3..-1]
+	http "$METHOD" "$CURL_DOMAIN$ENDP" $CURL_OPTIONS $argv[3..-1]
 end
 
 function GET --wraps short-http ; short-http GET $argv ; end
