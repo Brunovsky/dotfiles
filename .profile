@@ -68,6 +68,8 @@ export MOST_INITFILE=$XDG_CONFIG_HOME/most/mostrc
 
 export MAKEFLAGS='-j8 --no-print-directory'
 
+export DOMAIN_ALIASES_FILE=$HOME/.domain_aliases
+
 # ===================================================================
 
 export TERMINAL=konsole

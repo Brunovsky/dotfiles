@@ -2,7 +2,11 @@
 # ===========
 
 function hr --description 'Switch http domain' -a BACKEND
-	set -l file "$XDG_DATA_HOME/curl_domains"
+	if test -z "$DOMAIN_ALIASES_FILE"
+		echo 'Error: $DOMAIN_ALIASES_FILE is empty.'
+		return 1
+	end
+	set -l file "$DOMAIN_ALIASES_FILE"
 	if ! test -f "$file"
 		echo "Error: Please create $file."
 		echo 'Syntax: "#" for comments, one alias/line with 0 or more options:'
@@ -23,12 +27,12 @@ function hr --description 'Switch http domain' -a BACKEND
 
 	# handle 'hr', respond with current domain
 	if test -z "$BACKEND"
-		if test -z "$CURL_DOMAIN"
+		if test -z "$AHTTP_DOMAIN"
 			echo 'No domain is set.'
 			return 1
 		end
 		for i in (seq 1 (count $NAMES))
-			if test "$CURL_DOMAIN" = "$DOMAINS[$i]"
+			if test "$AHTTP_DOMAIN" = "$DOMAINS[$i]"
 				echo "$ROWS[$i]"
 				return 0
 			end
@@ -40,8 +44,8 @@ function hr --description 'Switch http domain' -a BACKEND
 	# handle 'hr $BACKEND', switch current domain
 	for i in (seq 1 (count $NAMES))
 		if test "$BACKEND" = "$NAMES[$i]"
-			set -gx CURL_DOMAIN "$DOMAINS[$i]"
-			set -gx CURL_OPTIONS (string split -n ' ' $OPTIONS[$i])
+			set -gx AHTTP_DOMAIN "$DOMAINS[$i]"
+			set -gx AHTTP_OPTIONS (string split -n ' ' $OPTIONS[$i])
 			echo "$ROWS[$i]"
 			return 0
 		end
@@ -54,13 +58,13 @@ function hr --description 'Switch http domain' -a BACKEND
 	return 1
 end
 
-complete -x -c hr -a '(awk \'!/^\s*#|^\s*$/ {print $1 "\t" $2}\' "$XDG_DATA_HOME/curl_domains")'
+complete -x -c hr -a '(awk \'!/^\s*#|^\s*$/ {print $1 "\t" $2}\' "$DOMAIN_ALIASES_FILE")'
 
 # httpie things
 # =============
 
 function short-http --wraps http -a METHOD -a ENDP
-	http "$METHOD" "$CURL_DOMAIN$ENDP" $CURL_OPTIONS $argv[3..-1]
+	http $AHTTP_OPTIONS "$METHOD" "$AHTTP_DOMAIN$ENDP" $argv[3..-1]
 end
 
 function GET --wraps short-http ; short-http GET $argv ; end
