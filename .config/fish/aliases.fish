@@ -137,9 +137,6 @@ alias sigrep 'grep -HniE'
 # dotfiles
 alias .git 'git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-# pretty print json
-alias prettyjson='python -m json.tool'
-
 # copy to clipboard
 alias clipclip 'xclip -selection clipboard'
 

@@ -33,7 +33,7 @@
 # use patience diff https://gist.github.com/roryokane/6f9061d3a60c1ba41237 @ 2020-01-26
 [diff]
 	renames = copies
-	algorithm = patience
+#	algorithm = patience
 
 # simulate source code grep (sgrep == grep -HnE)
 [grep]

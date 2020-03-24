@@ -125,6 +125,9 @@ unalias run-help
 alias help=run-help
 autoload -Uz run-help-git run-help-ip run-help-sudo run-help-svn
 
+# Other modules
+zmodload zsh/mapfile
+
 [[ ! -f ~/.aliases ]] || . ~/.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

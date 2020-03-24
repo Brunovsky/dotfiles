@@ -1,0 +1,159 @@
+#!/bin/bash
+
+set -euf -o pipefail
+
+HRARG="${1:-}"
+file="$DOMAIN_ALIASES_FILE"
+export_file="$XDG_CACHE_HOME/hr_domain"
+options_file="$XDG_CACHE_HOME/hr_options"
+
+hr_usage() {
+	echo 'Usage: hr $alias'
+	echo 'Options: --help --syntax --delete'
+}
+
+syntax() {
+	echo 'Syntax:'
+	echo 'Start comment lines with "#". Three types of commands, one per line:'
+	echo 'DOMAIN  $alias  $uri'
+	echo 'OPTION  $alias  $option'
+	echo 'SHLOAD  $alias  $file...'
+	echo 'Use tabs to separate the fields.'
+}
+
+hr_clear() {
+	echo 'export HR_DOMAIN=' >"$export_file"
+	echo 'export HR_OPTIONS=' >"$export_file"
+}
+
+if test -z "$file"; then
+	echo 'Bad config: Point $DOMAIN_ALIASES_FILE to your domains file.'
+	hr_usage && syntax && exit 3
+fi
+
+if ! test -f "$file"; then
+	echo "Bad config: No domains file: $file"
+	hr_usage && syntax && exit 3
+fi
+
+DOMAIN_TMPFILE=$(mktemp)
+OPTION_TMPFILE=$(mktemp)
+SHLOAD_TMPFILE=$(mktemp)
+
+awk '!/^\s*#|^\s*$/&&/^DOMAIN/' "$file" | tr -s '\t' | cut -f2,3 >"$DOMAIN_TMPFILE"
+awk '!/^\s*#|^\s*$/&&/^OPTION/' "$file" | tr -s '\t' | cut -f2,3 >"$OPTION_TMPFILE"
+awk '!/^\s*#|^\s*$/&&/^SHLOAD/' "$file" | tr -s '\t' | cut -f2-  >"$SHLOAD_TMPFILE"
+
+declare -a DOMAIN_ROW DOMAIN_NAME DOMAIN_URI
+declare -a OPTION_NAME OPTION_VALUE
+declare -a SHLOAD_NAME SHLOAD_SCRIPT
+
+mapfile -t DOMAIN_ROW    <"$DOMAIN_TMPFILE"
+mapfile -t DOMAIN_NAME   < <(cut -f1  "$DOMAIN_TMPFILE")
+mapfile -t DOMAIN_URI    < <(cut -f2  "$DOMAIN_TMPFILE")
+mapfile -t OPTION_NAME   < <(cut -f1  "$OPTION_TMPFILE")
+mapfile -t OPTION_VALUE  < <(cut -f2  "$OPTION_TMPFILE")
+mapfile -t SHLOAD_NAME   < <(cut -f1  "$SHLOAD_TMPFILE")
+mapfile -t SHLOAD_SCRIPT < <(cut -f2- "$SHLOAD_TMPFILE")
+
+# remove temporary files
+rm "$DOMAIN_TMPFILE" "$OPTION_TMPFILE" "$SHLOAD_TMPFILE"
+
+hr_list() {
+	echo 'Domain aliases:'
+	for i in "${!DOMAIN_ROW[@]}"; do
+		printf '%s\t%s\n' "${DOMAIN_NAME[$i]}" "${DOMAIN_URI[$i]}"
+	done | column -t
+}
+
+# handle 'hr --help'
+if test "$HRARG" == "--help"; then
+	hr_usage && hr_list && exit 0
+fi
+
+if test "$HRARG" == "--list"; then
+	hr_list && exit 0
+fi
+
+if test "$HRARG" == "--usage"; then
+	hr_usage && exit 0
+fi
+
+if test "$HRARG" == "--delete"; then
+	hr_clear && exit 0
+fi
+
+if test "$HRARG" == "--bash-completions"; then
+	for i in "${!DOMAIN_NAME[@]}"; do
+		printf '%s\n' "${DOMAIN_NAME[$i]}"
+	done
+	exit 0
+fi
+
+if test "$HRARG" == "--fish-completions"; then
+	for i in "${!DOMAIN_NAME[@]}"; do
+		printf '%s\t%s\n' "${DOMAIN_NAME[$i]}" "${DOMAIN_URI[$i]}"
+	done
+	exit 0
+fi
+
+if test "${HRARG::1}" == "-"; then
+	echo "Error: Unknown option $HRARG"
+	hr_usage && exit 2
+fi
+
+# handle 'hr', respond with current domain
+# don't touch files, so variables get refreshed
+if test -z "$HRARG"; then
+	if test -z "$HR_DOMAIN"; then
+		echo 'No domain is set.'
+		exit 1
+	fi
+	for i in "${!DOMAIN_NAME[@]}"; do
+		if test "$HR_DOMAIN" == "${DOMAIN_URI[$i]}"; then
+			printf '%s\t%s\n' "${DOMAIN_NAME[$i]}" "${DOMAIN_URI[$i]}"
+			exit 0
+		fi
+	done
+	echo 'Unknown'
+	exit 0
+fi
+
+# finally, handle 'hr $HRARG', switch current domain
+hr_clear
+
+# domain name
+for i in "${!DOMAIN_NAME[@]}"; do
+	if test "$HRARG" == "${DOMAIN_NAME[$i]}"; then
+		export HR_DOMAIN="${DOMAIN_URI[$i]}" >"$export_file"
+		printf '%s\t%s\n' "${DOMAIN_NAME[$i]}" "${DOMAIN_URI[$i]}"
+		break
+	fi
+done
+
+if test -z "${HR_DOMAIN+x}"; then
+	echo "Error: Didn't find that backend :("
+	hr_list
+	exit 0
+fi
+
+# domain options
+declare -ax HR_OPTIONS=()
+for i in "${!OPTION_NAME[@]}"; do
+	if test "$HRARG" == "${OPTION_NAME[$i]}"; then
+		HR_OPTIONS=("${HR_OPTIONS[@]}" "${OPTION_VALUE[$i]}")
+	fi
+done
+
+truncate --size=0 "$options_file"
+printf '%s\n' "$HR_DOMAIN" >"$export_file"
+for option in "${HR_OPTIONS[@]}"; do
+	printf '%s\n' "$option" >>"$options_file"
+done
+
+# run scripts
+for i in "${!SHLOAD_NAME[@]}"; do
+	if test "$HRARG" == "${SHLOAD_NAME[$i]}"; then
+        bash -c "${SHLOAD_SCRIPT[$i]}" 0</dev/null
+	fi
+done

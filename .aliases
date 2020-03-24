@@ -41,8 +41,8 @@ alias carerm='rm --interactive --dir --verbose'
 alias careln='ln --interactive --verbose'
 
 # I can't seem to remember this
-alias lnorder='echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n
-	-s for symbolic, -T to treat SINK as a normal file"'
+alias lnorder='echo -e "ln [option]... [-s] [-T] SINK SOURCE (SOURCE->SINK)\n" \
+	"\t-s for symbolic, -T to treat SINK as a normal file"'
 
 alias mkdir='mkdir --parents --verbose'
 alias rmdir='rmdir --verbose'
@@ -102,9 +102,6 @@ alias sigrep='grep -HniE'
 # dotfiles
 alias .git='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
-# pretty print json
-alias prettyjson='python -m json.tool'
-
 # copy to clipboard
 alias clipclip='xclip -selection clipboard'
 
@@ -112,5 +109,5 @@ alias clipclip='xclip -selection clipboard'
 alias mangrep='man -KI --regex'
 alias manigrep='man -Ki --regex'
 
-source ~/.http.aliases
-source ~/.local.aliases
+source ~/.aliases-http
+source ~/.aliases-local
