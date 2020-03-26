@@ -5,3 +5,6 @@ disable=SC2016
 
 # Can't follow non-constant source
 disable=SC1090
+
+# Consider using { cmd1; cmd2; } >> file instead of individual redirects
+disable=SC2129
