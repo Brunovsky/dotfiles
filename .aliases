@@ -91,7 +91,7 @@ alias splitcolon='tr -s ":" "\n"'
 alias path='echo $PATH | splitcolon'
 
 # invoke valgrind to debug memory leaks
-alias memcheck='valgrind --leak-check=full --show-leak-kinds=all'
+alias memcheck='valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes'
 
 # variations of grep
 alias egrep='grep -E'
