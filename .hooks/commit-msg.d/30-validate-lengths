@@ -3,6 +3,7 @@
 # and body of the commit message.
 
 SKIP_MERGES=y
+SKIP_FIXUPS=y
 FORCE_SEPARATOR_LINE=y
 
 SUBJECT_WARN_LENGTH=50
@@ -29,6 +30,11 @@ EMPTYLINE=$(head -n 1 <<<"$BODY")
 rm "$TMPFILE"
 
 if test $SKIP_MERGES = y && [[ $SUBJECT =~ Merge[[:space:]](branch|tag).* ]]
+then
+	exit 0
+fi
+
+if test $SKIP_FIXUPS = y && [[ $SUBJECT =~ fixup!.* ]]
 then
 	exit 0
 fi
