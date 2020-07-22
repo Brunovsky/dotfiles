@@ -55,6 +55,7 @@
 	ammend = amend
 	recommit = amend --reuse-message=HEAD
 	commit-inherit = commit --reuse-message=HEAD
+    fixup = commit --fixup
 
 	# sign the last commit with the default key
 	sign = recommit -S
