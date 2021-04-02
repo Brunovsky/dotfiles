@@ -109,5 +109,5 @@ alias clipclip='xclip -selection clipboard'
 alias mangrep='man -KI --regex'
 alias manigrep='man -Ki --regex'
 
-source ~/.aliases-http
-source ~/.aliases-local
+[[ -f ~/.aliases-http ]] && source ~/.aliases-http
+[[ -f ~/.aliases-local ]] && source ~/.aliases-local

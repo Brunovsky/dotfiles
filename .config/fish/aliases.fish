@@ -144,5 +144,5 @@ alias clipclip 'xclip -selection clipboard'
 alias mangrep 'man -KI --regex'
 alias manigrep 'man -Ki --regex'
 
-source ~/.config/fish/http.fish
-source ~/.config/fish/local.fish
+test -f ~/.config/fish/http.fish && source ~/.config/fish/http.fish
+test -f ~/.config/fish/local.fish && source ~/.config/fish/local.fish
