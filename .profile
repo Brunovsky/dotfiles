@@ -1,23 +1,23 @@
 appendpath() {
-	path="$1" ; list="$2" ; conf="$3"
-	test -n "$list" || list=PATH
+    path="$1" ; list="$2" ; conf="$3"
+    test -n "$list" || list=PATH
 
     # fucking shit hack
     # https://www.google.com/search?q=posix+shell+indirect+expansion
     expanded=$(eval echo -n \$$list)
 
-	case ":$expanded:" in
-	  *:"$path":*)
-		;;
-	  *)
-		if test -z "$expanded"; then
-			export $list="$path"
-		elif test "$conf" == "APPEND"; then
-			export $list="$expanded:$path"
-		else
-			export $list="$path:$expanded"
-		fi
-	esac
+    case ":$expanded:" in
+      *:"$path":*)
+        ;;
+      *)
+        if test -z "$expanded"; then
+            export $list="$path"
+        elif test "$conf" == "APPEND"; then
+            export $list="$expanded:$path"
+        else
+            export $list="$path:$expanded"
+        fi
+    esac
 }
 
 # ===================================================================
